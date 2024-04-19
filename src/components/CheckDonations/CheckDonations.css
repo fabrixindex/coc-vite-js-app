@@ -1,0 +1,220 @@
+.equilibrio-donaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    width: 70%;
+    margin: 0 auto; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.equilibrio-donaciones-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.equilibrio-donaciones-text {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.generate-donation-list-bt {
+    background-color: rgb(58, 168, 58);
+    color: white;
+    border: none;
+    padding: 16px 26px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, color 0.3s ease; /* Transiciones suaves para el sombreado y el color */
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.generate-donation-list-bt:hover {
+    background-color: rgb(75, 170, 75);
+    box-shadow: 0 6px 8px rgba(255, 254, 254, 0.4); /* Sombrado más fuerte al pasar el cursor */
+    color: rgba(255, 255, 255, 0.9); /* Color del texto ligeramente más claro */
+}
+
+.white-list {
+    color: white;
+    columns: 5;  /* Assuming you want a multi-column layout */
+    list-style-position: inside;
+}
+
+.white-list li {
+    padding: 5px;
+    list-style-type: disc;
+}
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 1rem;
+    color: white;
+}
+
+.cards-donations {
+    width: 260px;
+    box-shadow: 0 4px 8px rgba(252, 251, 251, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #862d2d;
+    text-align: center;
+    padding: 10px;
+    border: solid 1.5px white;
+    cursor: pointer;
+}
+
+.card-donations-header {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    padding-left: 1rem;
+    align-items: center;
+}
+
+.card-donations-title {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 5px;
+}
+
+.link-unstyled {
+    color: inherit; 
+    text-decoration: none; 
+}
+
+.card-donations-description {
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: flex-start;
+}
+
+.card-donations-description-p {
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+.league-icon {
+    width: 50px;
+    height: auto;
+    filter: drop-shadow(0 1px 5px rgb(222, 224, 204));
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Fondo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Asegura que el modal esté por encima del contenido */
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    height: 80%;
+    overflow-y: auto; /* Permite desplazamiento vertical si la lista es muy larga */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Sombra para el modal */
+}
+
+.item-modal {
+    color: black;
+    padding: 8px 0; /* Espaciado interno */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Borde inferior */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.item-modal:last-child {
+    border-bottom: none; /* Eliminar borde inferior del último elemento */
+}
+
+.item-modal:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Cambiar color de fondo al pasar el cursor */
+}
+
+.button-modal-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+.button-modal-ocultar, .button-modal-copy {
+    background-color: rgb(243, 50, 24);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease; /* Transición suave */
+    margin-top: 1rem;
+}
+
+.button-modal-ocultar:hover {
+    background-color: rgb(245, 85, 64);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+.button-modal-copy {
+    background-color: rgb(238, 114, 32);
+}
+
+.button-modal-copy:hover {
+    background-color: rgb(240, 138, 70);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+.modal-title {
+    color: black;
+    margin-bottom: 15px;
+    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.modal-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.item-modal {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+@media (min-width: 600px) {
+    .modal-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

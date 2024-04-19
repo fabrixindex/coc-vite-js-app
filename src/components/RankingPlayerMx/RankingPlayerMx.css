@@ -1,0 +1,135 @@
+/* Estilos generales del contenedor de la tabla */
+.ranking-player-table-mx {
+    max-width: 100%;
+    width: 75%; /* Cambia el valor según sea necesario */
+    margin: 0 auto; /* Centra horizontalmente */
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    margin-top: 2rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Estilos para la tabla */
+.player-table-mx {
+    max-width: 100%;
+    width: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 2rem;
+    box-shadow: 4px 4px 25px rgba(146, 146, 146, 0.966);
+    margin-bottom: 1rem;
+}
+
+/* Estilos para el encabezado de la tabla */
+.table-title-mx {
+    background-color: #a82727;
+    color: white;
+    padding: 12px 0;
+    text-align: center;
+    border: solid 1px white;
+    font-size: 25px;
+}
+
+/* Estilos comunes para los títulos de las columnas */
+.column-title-mx {
+    background-color: #a82727;
+    padding: 8px;
+    text-align: center;
+    border: solid 1px white;
+    font-size: 25px;
+}
+
+/* Estilos para cada celda de datos */
+.table-cell {
+    white-space: nowrap;
+    padding: 10px;
+    color: white;
+    border: solid 1px white;
+    text-align: center;
+}
+
+/* Alternar colores de fondo para filas impares y pares */
+.data-row:nth-child(odd) {
+    background-color: transparent;
+}
+
+.data-row:nth-child(even) {
+    background-color: #136b26;
+}
+
+.data-row:hover {
+    background-color: #76aa61;
+}
+
+/* Estilos para el texto de los nombres de jugadores y clanes */
+.player-name-mx, .clan-name-mx {
+    margin-left: 10px;
+    word-break: break-all;
+}
+
+/* Estilos para los contenedores dentro de las celdas */
+.table-rank-name-league-mx, .table-rank-clan-name-img-mx, .table-rank-trophy-mx {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* Estilos para los íconos */
+.trophy-icon-mx {
+    max-width: 45px;
+    max-height: 45px;
+    border-radius: 50%;  
+}
+
+.trophy-count-mx {
+    margin-left: 10px;
+    padding: 3px 5px 3px 5px;
+    background-color: rgb(143, 94, 3);
+    border-radius: 15px;
+    color: white;
+}
+
+.clan-badge-mx {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.show-more-btn-py-mx {
+    background-color: rgb(138, 27, 27);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease; /* Transición suave */
+    margin-top: 1rem;
+}
+
+.show-less-btn-py-mx {
+    background-color: rgb(107, 50, 46);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: box-shadow 0.3s ease; /* Transición suave */
+    margin-top: 1rem;
+}
+
+.show-more-btn-py-mx:hover {
+    background-color: rgb(139, 43, 43);
+    box-shadow: 0 6px 10px rgba(255, 254, 254, 0.2);
+}
+
+.show-less-btn-py-mx:hover {
+    background-color: rgb(110, 62, 58);
+    box-shadow: 0 6px 10px rgba(252, 251, 251, 0.2);
+}

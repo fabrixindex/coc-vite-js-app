@@ -1,0 +1,35 @@
+.ranking-container-1, .ranking-container-2, .ranking-container-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 85%;
+    margin: 0 auto; /* Centra horizontalmente */
+    margin-top: 2rem;
+    border-radius: 15px;
+    background-image: linear-gradient(to bottom, rgb(43, 9, 43), rgb(7, 7, 7)); /* Degradado de violeta a negro */
+}
+
+.clan-arg-container-text, .arg-player-container-text, .mex-player-container-text {
+    color: white;
+    font-size: 65px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    margin-left: 2rem;
+}
+
+.ranking-container-2 {
+    margin-top: 3rem;
+    background-image: linear-gradient(to bottom, rgb(26, 24, 87), rgb(7, 7, 7));
+}
+
+.arg-player-container-text {
+    margin-right: 2rem;
+    text-align: right;
+}
+
+.ranking-container-3 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    background-image: linear-gradient(to bottom, rgb(109, 19, 19), rgb(7, 7, 7));
+}

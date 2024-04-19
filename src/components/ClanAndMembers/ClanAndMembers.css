@@ -1,0 +1,175 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.clan-card-container {
+    display: grid;
+    grid-template-columns: 30% 1fr; /* La imagen ocupa el 30% y el contenido el resto */
+    gap: 20px;
+    align-items: flex-start; /* Alinea los elementos al comienzo del contenedor */
+    background-color: #272727;
+    border: 2px solid #ccc;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 20px;
+    max-width: 800px;
+    padding: 30px;
+}
+
+.clan-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.clan-img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: auto; /* Altura automática para mantener la relación de aspecto */
+    object-fit: cover;
+    filter: drop-shadow(0 1px 20px rgb(245, 0, 0));
+}
+
+
+.league-img{
+    height: 90px;
+    width: 90px;
+    align-items: center;
+    filter: drop-shadow(0 1px 10px gold);
+}
+
+.clan-war-league {
+    display: flex; /* Utiliza flexbox */
+    align-items: center; /* Alinea verticalmente el contenido */
+    color: white; 
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: center;
+    margin: 45px 0; /* Margen superior e inferior */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.bg-text {
+    background-color: gold; /* Amarillo */
+    padding: 3px;
+    border-radius: 10px; /* Bordes redondeados */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    margin-left: 4px;
+}
+.clan-card-container-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.clan-name {
+    font-size: 45px;
+    color: rgb(206, 17, 17);
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.clan-description{
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: bolder;
+}
+
+
+.clan-card-contained-mini-child {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-size: 14px;
+}
+
+.clan-card-contained-mini-child p{
+    margin: 5px 0; /* Margen superior e inferior */
+    padding: 4px; /* Espaciado interno para resaltar el texto */
+    border-radius: 10px; /* Bordes redondeados */
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.clan-card-contained-mini-child p:nth-child(1) {
+    background-color: rgba(255, 0, 255, 0.5); /* Magenta */
+    color: #ff00ff; /* Magenta */
+}
+
+.clan-card-contained-mini-child p:nth-child(2) {
+    background-color: rgba(255, 255, 0, 0.5); /* Amarillo */
+    color: #ffff00; /* Amarillo */
+}
+
+.clan-card-contained-mini-child p:nth-child(3) {
+    background-color: rgba(0, 255, 255, 0.5); /* Cian */
+    color: #00ffff; /* Cian */
+}
+
+.clan-card-contained-mini-child p:nth-child(4) {
+    background-color: rgba(0, 255, 0, 0.5); /* Verde */
+    color: #00ff00;
+}
+
+.clan-card-contained-mini-child p:nth-child(5) {
+    background-color: rgba(255, 0, 0, 0.5); /* Rojo */
+    color: #e76060; /* Rojo */
+}
+
+.clan-card-contained-mini-child p:nth-child(6) {
+    background-color: rgba(0, 0, 255, 0.5); /* Azul */
+    color: #6565f8; /* Azul */
+}
+
+.clan-card-contained-mini-child p:nth-child(7) {
+    background-color: rgba(255, 255, 0, 0.5); /* Amarillo */
+    color: #ffff00; /* Amarillo */
+}
+
+.clan-card-contained-mini-child p:nth-child(8) {
+    background-color: rgba(255, 0, 255, 0.5); /* Magenta */
+    color: #ff00ff; /* Magenta */
+}
+
+.clan-card-contained-mini-child p:nth-child(9) {
+    background-color: rgba(0, 255, 255, 0.5); /* Cian */
+    color: #00ffff; /* Cian */
+}
+
+.clan-card-contained-mini-child p:nth-child(10) {
+    background-color: rgba(0, 255, 0, 0.5); /* Verde */
+    color: #00ff00; /* Verde */
+}
+
+.clan-card-contained-mini-child p:nth-child(11) {
+    background-color: rgba(255, 0, 255, 0.5); /* Magenta */
+    color: #ff00ff; /* Magenta */
+}
+
+.clan-card-contained-mini-child p:nth-child(12) {
+    background-color: rgba(0, 255, 255, 0.5); /* Cian */
+    color: #00ffff; /* Cian */
+}
+
+.clan-tag {
+    position: absolute;
+    top: 220px; /* Ajusta la posición desde arriba */
+    right: 270px; /* Ajusta la posición desde la derecha */
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 5px 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 18px;
+    cursor: pointer;
+}

@@ -1,0 +1,82 @@
+.card-container {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center; /* Centrar el contenido */
+    font-family: 'Arial', sans-serif; /* Cambiar la fuente de letra */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Agregar sombra */
+    width: 350px;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    align-items:stretch;
+    justify-content: space-evenly;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.player-name {
+    font-size: 25px;
+}
+
+.card-container:hover {
+    background-color: #555;
+}
+
+.player-tag {
+    font-weight: lighter;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card-description-th-trophy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.card-info {
+    display: flex;
+    align-items: center; /* Asegura el centrado vertical de los contenidos del p */
+    justify-content: center; /* Centra horizontalmente el contenido dentro del p */
+    flex-grow: 1; /* Hace que cada p ocupe un espacio igual y se expanda para llenar el contenedor */
+    text-align: center; /* Centra el texto dentro del p */
+    font-size: 20px;
+}
+
+.card-description {
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap; 
+    align-items: start;
+}
+
+.card-button{
+    cursor: pointer;
+    width: 50%;
+    height: 46px;
+    border-radius: 12px;
+    background-color: rgb(255, 1, 1);;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.card-button:hover{
+    box-shadow: 0px 4px 5px #f9faec;
+}
+
+.trophy-img{
+    width: 70px;
+    height: 70px;
+}
+
+.th-img{
+    width: 80px;
+    height: 80px;  
+}

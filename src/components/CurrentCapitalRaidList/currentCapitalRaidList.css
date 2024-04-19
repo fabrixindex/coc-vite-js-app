@@ -1,0 +1,19 @@
+.capital-raid-list {
+    color: white;
+    font-size: 1.2rem; /* Aumenta el tamaño de la letra */
+    margin: 10px;
+    margin-left: 30px;
+}
+
+.capital-raid-list-header {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.capital-raid-list-number {
+    color: white;
+    list-style: decimal;
+    margin-left: 20px;
+}

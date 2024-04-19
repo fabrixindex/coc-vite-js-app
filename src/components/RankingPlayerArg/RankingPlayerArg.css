@@ -1,0 +1,107 @@
+.ranking-player-table {
+    width: 50%;
+    margin: 0 auto; /* Centra horizontalmente */
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    margin-top: 2rem;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.ranking-player-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    box-shadow: 4px 4px 25px rgba(146, 146, 146, 0.966);
+}
+
+.ranking-player-table th,
+.ranking-player-table td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+}
+
+.ranking-player-table th {
+    background-color: #3432c9;
+    font-size: 25px;
+}
+
+.ranking-player-table tbody tr:nth-child(even) {
+    background-color: #719fc5;
+}
+
+.ranking-player-table tbody tr:hover {
+    background-color: #2b4f77;
+}
+
+.ranking-player-table img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+}
+
+.table-rank-trophy, .table-rank-name-league, .table-rank-clan-name-img{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.table-rank-points {
+    padding: 3px 5px 3px 5px;
+    background-color: rgb(143, 94, 3);
+    border-radius: 15px;
+    color: white;
+}
+
+.trophy-img {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 50%;   
+}
+
+.table-rank-p {
+    margin-left: 10px;
+}
+
+.show-more-btn-py-arg {
+    background-color: rgb(34, 15, 122);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease; /* Transición suave */
+    margin-top: 1rem;
+}
+
+.show-less-btn-py-arg {
+    background-color: rgb(31, 32, 80);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: box-shadow 0.3s ease; /* Transición suave */
+    margin-top: 1rem;
+}
+
+.show-more-btn-py-arg:hover {
+    background-color: rgb(49, 31, 129);
+    box-shadow: 0 6px 10px rgba(255, 254, 254, 0.2);
+}
+
+.show-less-btn-py-arg:hover {
+    background-color: rgb(41, 42, 83);
+    box-shadow: 0 6px 10px rgba(252, 251, 251, 0.2);
+}
