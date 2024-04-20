@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getClanData } from "../../Services/ConnectAPI.js";
 import MemberListContainer from "../MemberListContainer/memberListContainer.jsx";
+import Loader from "../Loader/Loader.jsx"; 
 import "./ClanAndMembers.css";
 
 function ClanAndMembers() {
+    const [loading, setLoading] = useState(true); 
     const [clan, setClan] = useState(null);
     const [copied, setCopied] = useState(false);
     const [showCopiedText, setShowCopiedText] = useState(false);
@@ -14,8 +16,10 @@ function ClanAndMembers() {
             try {
                 const response = await getClanData();
                 setClan(response);
+                setLoading(false); 
             } catch (error) {
                 console.error('Error fetching CLAN:', error);
+                setLoading(false); 
             }
         }
 
@@ -38,10 +42,9 @@ function ClanAndMembers() {
         }
     }, [showCopiedText]);
 
-    if (!clan) {
-        return <div>Cargando datos del clan...</div>;
+    if (loading) {
+        return <Loader />; 
     }
-
 
     return (
         <>
@@ -55,7 +58,6 @@ function ClanAndMembers() {
                             <span className="bg-text">{clan.warLeague.name}</span>
                         </p>
 
-                        {/* Agregar la referencia y el evento onClick */}
                         <p ref={clanTagRef} onClick={copyToClipboard} className="clan-tag" onMouseEnter={() => setCopied(false)} onMouseLeave={() => setShowCopiedText(false)}>{clan.tag}</p>
 
                         {copied && showCopiedText && <span style={{ marginLeft: "5px", color: "white", position: "absolute", top: "260px", right: "300px" }}>¡Copiado!</span>}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getSinglePlayer } from "../../Services/ConnectAPI.js";
 import MemberDetailList from "../MemberDetailList/MemberDetailList.jsx";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader.jsx";
 
 function MemberDetailContainer() {
     const [member, setMember] = useState(null);
@@ -25,7 +26,7 @@ function MemberDetailContainer() {
     }, [PLAYERTAG]);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return  <Loader />;
     }
 
     return <MemberDetailList member={member} />;

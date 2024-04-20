@@ -8,9 +8,9 @@
 
 .clan-card-container {
     display: grid;
-    grid-template-columns: 30% 1fr; /* La imagen ocupa el 30% y el contenido el resto */
+    grid-template-columns: 30% 1fr; 
     gap: 20px;
-    align-items: flex-start; /* Alinea los elementos al comienzo del contenedor */
+    align-items: flex-start; 
     background-color: #272727;
     border: 2px solid #ccc;
     border-radius: 10%;
@@ -29,7 +29,7 @@
 }
 
 .clan-img {
-    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    width: 100%; 
     height: auto; /* Altura automática para mantener la relación de aspecto */
     object-fit: cover;
     filter: drop-shadow(0 1px 20px rgb(245, 0, 0));
@@ -44,21 +44,21 @@
 }
 
 .clan-war-league {
-    display: flex; /* Utiliza flexbox */
-    align-items: center; /* Alinea verticalmente el contenido */
+    display: flex; 
+    align-items: center; 
     color: white; 
     margin-top: 15px;
     font-size: 18px;
     font-weight: bolder;
     text-align: center;
-    margin: 45px 0; /* Margen superior e inferior */
-    border-radius: 10px; /* Bordes redondeados */
+    margin: 45px 0; 
+    border-radius: 10px; 
 }
 
 .bg-text {
-    background-color: gold; /* Amarillo */
+    background-color: gold; 
     padding: 3px;
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 10px; 
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     margin-left: 4px;
@@ -84,7 +84,6 @@
     font-weight: bolder;
 }
 
-
 .clan-card-contained-mini-child {
     display: flex;
     flex-direction: row;
@@ -94,82 +93,121 @@
 }
 
 .clan-card-contained-mini-child p{
-    margin: 5px 0; /* Margen superior e inferior */
-    padding: 4px; /* Espaciado interno para resaltar el texto */
-    border-radius: 10px; /* Bordes redondeados */
+    margin: 5px 0; 
+    padding: 4px; 
+    border-radius: 10px; 
     color: white;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .clan-card-contained-mini-child p:nth-child(1) {
-    background-color: rgba(255, 0, 255, 0.5); /* Magenta */
-    color: #ff00ff; /* Magenta */
+    background-color: rgba(255, 0, 255, 0.5); 
+    color: #ff00ff; 
 }
 
 .clan-card-contained-mini-child p:nth-child(2) {
-    background-color: rgba(255, 255, 0, 0.5); /* Amarillo */
-    color: #ffff00; /* Amarillo */
+    background-color: rgba(255, 255, 0, 0.5); 
+    color: #ffff00; 
 }
 
 .clan-card-contained-mini-child p:nth-child(3) {
-    background-color: rgba(0, 255, 255, 0.5); /* Cian */
-    color: #00ffff; /* Cian */
+    background-color: rgba(0, 255, 255, 0.5); 
+    color: #00ffff; 
 }
 
 .clan-card-contained-mini-child p:nth-child(4) {
-    background-color: rgba(0, 255, 0, 0.5); /* Verde */
+    background-color: rgba(0, 255, 0, 0.5); 
     color: #00ff00;
 }
 
 .clan-card-contained-mini-child p:nth-child(5) {
-    background-color: rgba(255, 0, 0, 0.5); /* Rojo */
-    color: #e76060; /* Rojo */
+    background-color: rgba(255, 0, 0, 0.5); 
+    color: #e76060; 
 }
 
 .clan-card-contained-mini-child p:nth-child(6) {
-    background-color: rgba(0, 0, 255, 0.5); /* Azul */
-    color: #6565f8; /* Azul */
+    background-color: rgba(0, 0, 255, 0.5); 
+    color: #6565f8; 
 }
 
 .clan-card-contained-mini-child p:nth-child(7) {
-    background-color: rgba(255, 255, 0, 0.5); /* Amarillo */
-    color: #ffff00; /* Amarillo */
+    background-color: rgba(255, 255, 0, 0.5); 
+    color: #ffff00; 
 }
 
 .clan-card-contained-mini-child p:nth-child(8) {
-    background-color: rgba(255, 0, 255, 0.5); /* Magenta */
-    color: #ff00ff; /* Magenta */
+    background-color: rgba(255, 0, 255, 0.5); 
+    color: #ff00ff; 
 }
 
 .clan-card-contained-mini-child p:nth-child(9) {
-    background-color: rgba(0, 255, 255, 0.5); /* Cian */
-    color: #00ffff; /* Cian */
+    background-color: rgba(0, 255, 255, 0.5); 
+    color: #00ffff; 
 }
 
 .clan-card-contained-mini-child p:nth-child(10) {
-    background-color: rgba(0, 255, 0, 0.5); /* Verde */
-    color: #00ff00; /* Verde */
+    background-color: rgba(0, 255, 0, 0.5); 
+    color: #00ff00; 
 }
 
 .clan-card-contained-mini-child p:nth-child(11) {
-    background-color: rgba(255, 0, 255, 0.5); /* Magenta */
-    color: #ff00ff; /* Magenta */
+    background-color: rgba(255, 0, 255, 0.5); 
+    color: #ff00ff; 
 }
 
 .clan-card-contained-mini-child p:nth-child(12) {
-    background-color: rgba(0, 255, 255, 0.5); /* Cian */
-    color: #00ffff; /* Cian */
+    background-color: rgba(0, 255, 255, 0.5); 
+    color: #00ffff; 
 }
 
 .clan-tag {
     position: absolute;
-    top: 220px; /* Ajusta la posición desde arriba */
-    right: 270px; /* Ajusta la posición desde la derecha */
-    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 5px 10px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
+    top: 150px; 
+    right: 260px; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
     font-size: 18px;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .clan-card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .clan-img-container {
+        width: 100%;
+    }
+
+    .clan-img {
+        width: 50%; 
+        height: auto; 
+    }
+
+    .clan-war-league {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .league-img {
+        width: 20%; 
+        height: auto; 
+    }
+
+    .clan-tag {
+        position: static; 
+        margin-top: 10px; 
+    }
+
+    .clan-card-container-child {
+        width: 100%;
+        padding: 20px; 
+    }
 }

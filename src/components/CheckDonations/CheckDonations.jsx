@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { fetchClanMembersData } from "../../Services/ConnectAPI.js";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader.jsx";
 import "./CheckDonations.css";
 
 function CheckDonations() {
     const [members, setMembers] = useState([]);
     const [unbalancedDonations, setUnbalancedDonations] = useState([]);
-    const [showModal, setShowModal] = useState(false);  // Estado para manejar la visibilidad del modal
-    const [copied, setCopied] = useState(false);  // Estado para manejar la copia de la lista
+    const [showModal, setShowModal] = useState(false);  
+    const [copied, setCopied] = useState(false);  
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchMembers() {
             try {
                 const response = await fetchClanMembersData();
                 setMembers(response.items || []);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching members:', error);
+                setLoading(false);
             }
         }
         fetchMembers();
@@ -26,11 +30,11 @@ function CheckDonations() {
             Number(member.donations) < Number(member.donationsReceived) / 2
         );
         setUnbalancedDonations(unbalanced);
-        setShowModal(true);  // Mostrar el modal
+        setShowModal(true);  
     };
 
     const closeModal = () => {
-        setShowModal(false);  // Ocultar el modal
+        setShowModal(false);  
     };
 
     const copyList = () => {
@@ -48,7 +52,11 @@ function CheckDonations() {
         setTimeout(() => {
             setCopied(false);
         }, 5000);
-    };    
+    };   
+    
+    if (loading) {
+        return <Loader />; 
+    }
 
     return (
         <React.Fragment>

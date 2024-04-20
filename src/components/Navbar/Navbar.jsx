@@ -24,6 +24,10 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLinkClick = () => {
+    setIsMenuOpen(false); 
+  };
+
   return (
     <nav id='nav'>
 
@@ -34,19 +38,19 @@ function Navbar() {
       <div ref={menuRef} className={`nav-container ${isMenuOpen ? 'open' : ''}`}>
         <ul>
           
-          <Link to="/" className='nav-item'> <li> Home </li> </Link>
+          <Link to="/" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Home </li> </Link>
           
-          <Link to="/losMagiosClan" className='nav-item'> <li> Clan Los Magios </li> </Link>
+          <Link to="/losMagiosClan" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Clan Los Magios </li> </Link>
 
-          <Link to="/currentWar" className='nav-item'> <li> Estadisticas de la Guerra actual </li> </Link>
+          <Link to="/currentWar" className='nav-item'> <li className='nav-bar-li' onClick={handleLinkClick}> Estadisticas de la Guerra actual </li> </Link>
           
-          <Link to="/" className='nav-item'> <li> Estadisticas de CWL </li> </Link> 
+          <Link to="/warleague" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Estadisticas de CWL </li> </Link> 
 
-          <Link to="/capitalRaid" className='nav-item'> <li> Asaltos de la Capital </li> </Link>
+          <Link to="/capitalRaid" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Asaltos de la Capital </li> </Link>
 
-          <Link to="/checkDonations" className='nav-item'> <li> Donaciones del Clan </li> </Link>
+          <Link to="/checkDonations" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Donaciones del Clan </li> </Link>
           
-          <Link to="/rankings" className='nav-item'> <li> Rankings </li> </Link>
+          <Link to="/rankings" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Rankings </li> </Link>
 
         </ul>
       </div>

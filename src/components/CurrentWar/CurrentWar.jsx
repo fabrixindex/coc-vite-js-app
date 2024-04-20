@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { getCurrentWarData } from "../../Services/ConnectAPI.js";
+import Loader from "../Loader/Loader.jsx";
 import "./CurrentWar.css";
 
 function CurrentWar() {
     const [war, setWar] = useState(null);
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchWarData() {
             try {
                 const response = await getCurrentWarData();
                 setWar(response);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching WAR DATA:', error);
+                setLoading(false);
             }
         }
 
@@ -25,8 +29,8 @@ function CurrentWar() {
         return () => clearInterval(intervalId);
     }, []);
 
-    if (!war) {
-        return <div>Loading...</div>;
+    if (loading) {
+        return <Loader />; 
     }
 
     const getTownHallImage = (level) => {

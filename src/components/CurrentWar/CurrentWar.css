@@ -1,11 +1,17 @@
 .current-war-title {
-    color: red; /* Color rojo para el texto */
-    text-shadow: 2px 2px 4px rgba(75, 74, 74, 0.5); /* Sombreado suave */
-    text-align: center; /* Centrado del texto */
-    font-size: 3rem; /* Tamaño de fuente grande */
-    margin-bottom: 20px; /* Espaciado inferior */
-    padding: 10px; /* Relleno interno */
+    color: red; 
+    text-shadow: 2px 2px 4px rgba(75, 74, 74, 0.5); 
+    text-align: center; 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    padding: 10px; 
     text-decoration: underline red;
+}
+
+@media (max-width: 767px) {
+    .current-war-title {
+        font-size: 2rem; 
+    }
 }
 
 .war-container {
@@ -14,16 +20,17 @@
 
 .clan-comparison-container {
     width: 75%;
-    margin: 0 auto; /* Centra horizontalmente */
+    margin: 0 auto; 
     margin-bottom: 3rem;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .table-war-comparison {
-    width: 100%; /* Ajusta el ancho de la tabla al 100% del contenedor */
-    border-collapse: collapse; /* Para fusionar los bordes de las celdas */
-    border-radius: 10px; /* Aplica bordes redondeados de 10px a la tabla */
+    width: 100%; 
+    max-width: 100%;
+    border-collapse: collapse; 
+    border-radius: 10px; 
     overflow: hidden;
 }
 
@@ -40,11 +47,11 @@
 }
 
 .table-war-comparison img {
-    vertical-align: middle; /* Alinea verticalmente las imágenes con el texto */
+    vertical-align: middle; 
 }
 
 .table-war-comparison th, .table-war-comparison td {
-    border: 2px solid #1d1d1d; /* Agrega bordes a las celdas */
+    border: 2px solid #1d1d1d; 
     padding: 8px;
     text-align: center;
 }
@@ -61,8 +68,8 @@
 }
 
 .clan-img-column, .oponent-img-column {
-    width: 120px;
-    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
 }
 
 .clan-img-column {
@@ -110,6 +117,21 @@
     filter: drop-shadow(0 1px 15px rgb(226, 230, 190));
 }
 
+@media (max-width: 767px) {
+    .clan-name-column-magios {
+        font-size: 2em; 
+    }
+
+    .clan-name-column-oponent {
+        font-size: 2em; 
+    }
+
+    .table-war-comparison th, .table-war-comparison td {
+        padding: 4px; 
+        font-size: 14px; 
+    }
+}
+
 .participants {
     display: flex;
     flex-direction: row;
@@ -149,6 +171,33 @@
     font-size: 18px;
 }
 
+@media (max-width: 767px) {
+    .participant-card {
+        width: 80%; 
+    }
+}
+
+@media (min-width: 768px) {
+    .participant-card {
+        max-width: 300px; 
+    }
+}
+
+@media (min-width: 768px) {
+
+    .participant-card {
+        width: 100%; 
+        max-width: 350px; 
+        width: calc(50% - 20px); 
+    }
+}
+
+@media (min-width: 1200px) {
+    .participant-card {
+        width: calc(33.33% - 20px); 
+    }
+}
+
 .attacks {
     display: flex;
     flex-direction: row;
@@ -158,14 +207,14 @@
 
 .attack-card {
     border: 2px solid #ccc;
-    border-radius: 8px; /* Borde redondeado */
+    border-radius: 8px; 
     padding: 10px;
     width: 200px;
-    transition: border-color 0.3s; /* Agregar transición para el color del borde */
+    transition: border-color 0.3s; 
 }
 
 .attack-card:hover {
-    border-color: #333; /* Cambiar color del borde al pasar el mouse */
+    border-color: #333; 
     background-color: #555;
 }
 

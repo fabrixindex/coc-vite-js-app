@@ -7,6 +7,7 @@ import MemberDetailContainer from './components/MemberDetailContainer/MemberDeta
 import CurrentWar from './components/CurrentWar/CurrentWar.jsx'
 import CheckDonations from './components/CheckDonations/CheckDonations.jsx'
 import Rankings from './components/Rankings/Rankings.jsx'
+import ClanWarLeague from './components/ClanWarLeague/ClanWarLeague.jsx'
 import Home from './components/Home/Home.jsx'
 
 function App() {
@@ -19,17 +20,19 @@ function App() {
 
         <Route path='/' element={ <Home/> } />
 
-        <Route path='/capitalRaid' element={ <CurrentCapitalRaidContainer/> } />
-
         <Route path='/losMagiosClan' element={ <ClanAndMembers/> } />
 
-        <Route path='/player/:PLAYERTAG' element={ <MemberDetailContainer/> } />
-
         <Route path='/currentWar' element={ <CurrentWar/> } />
+
+        <Route path='/warleague' element={ <ClanWarLeague/> } />
+
+        <Route path='/capitalRaid' element={ <CurrentCapitalRaidContainer/> } />
 
         <Route path='/checkDonations' element={ <CheckDonations/> } />
 
         <Route path='/rankings' element={ <Rankings /> }/>
+
+        <Route path='/player/:PLAYERTAG' element={ <MemberDetailContainer/> } />
 
         <Route path="*" element={<h1 style={{ color: 'red' }}>Error 404. Page not found</h1>} />
 
