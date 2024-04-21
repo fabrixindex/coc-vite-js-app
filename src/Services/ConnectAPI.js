@@ -5,7 +5,7 @@ const SEASONID = process.env.SEASONID;
 const ARGENTINALOCATIONID = process.env.ARGENTINALOCATIONID;
 const MEXICOLOCATIONID = "32000153"
 
-const clanUrl = `/api/v1/clans/${encodeURIComponent(CLAN)}`;
+const clanUrl = `https://api.clashofclans.com/api/v1/clans/${encodeURIComponent(CLAN)}`;
 
 const headers = {
   'Accept': 'application/json',

@@ -8,7 +8,7 @@ dotenv.config();
 export default defineConfig({
   plugins: [react()],
   
-  server: {
+  /*server: {
     proxy: {
       '/api': {
         target: 'https://api.clashofclans.com',
@@ -16,7 +16,7 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, ''),
       },
     },
-  },
+  },*/
 
   define: {
     'process.env.TOKEN' : JSON.stringify(process.env.TOKEN),
