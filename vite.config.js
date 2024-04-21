@@ -8,15 +8,21 @@ dotenv.config();
 export default defineConfig({
   plugins: [react()],
   
-  /*server: {
+  server: {
     proxy: {
       '/api': {
         target: 'https://api.clashofclans.com',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
+        pathRewrite: { '^/api': '' },
+        
+        bypass: function(req, res, proxyOptions) {
+          if (req.headers.referer) {
+            req.headers.referer = req.headers.referer.replace('https://coc-los-magios-vite-js-app.vercel.app', 'https://cors-anywhere.herokuapp.com');
+          }
+        }
       },
     },
-  },*/
+  },
 
   define: {
     'process.env.TOKEN' : JSON.stringify(process.env.TOKEN),
