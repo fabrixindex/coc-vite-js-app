@@ -16,8 +16,8 @@ export default defineConfig({
         pathRewrite: { '^/api': '' },
         
         bypass: function(req, res, proxyOptions) {
-          if (req.headers.referer) {
-            req.headers.referer = req.headers.referer.replace('https://coc-los-magios-vite-js-app.vercel.app', 'https://cors-anywhere.herokuapp.com');
+          if (req.headers.origin) {
+            req.headers.origin = req.headers.origin.replace('https://coc-los-magios-vite-js-app.vercel.app', 'https://cors-anywhere.herokuapp.com');
           }
         }
       },
