@@ -6,14 +6,7 @@
         "headers": {
           "Authorization": "Bearer @TOKEN"
         }
-      },
-      {
-        "src": "/api/(.*)",
-        "dest": "https://api.clashofclans.com/$1",
-        "headers": {
-          "Authorization": "Bearer @TOKEN"
-        }
       }
     ]
- }
+  }
   
