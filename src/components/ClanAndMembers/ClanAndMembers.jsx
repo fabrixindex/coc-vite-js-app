@@ -31,7 +31,15 @@ function ClanAndMembers() {
         navigator.clipboard.writeText(textToCopy);
         setCopied(true);
         setShowCopiedText(true);
+    
+        clanTagRef.current.textContent = "¡Copiado!";
+    
+        setTimeout(() => {
+            clanTagRef.current.textContent = clan.tag;
+            setShowCopiedText(false);
+        }, 3000);
     };
+    
 
     useEffect(() => {
         if (showCopiedText) {
@@ -59,8 +67,6 @@ function ClanAndMembers() {
                         </p>
 
                         <p ref={clanTagRef} onClick={copyToClipboard} className="clan-tag" onMouseEnter={() => setCopied(false)} onMouseLeave={() => setShowCopiedText(false)}>{clan.tag}</p>
-
-                        {copied && showCopiedText && <span style={{ marginLeft: "5px", color: "white", position: "absolute", top: "260px", right: "300px" }}>¡Copiado!</span>}
 
                     </div>
 

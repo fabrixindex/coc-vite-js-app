@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CurrentCapitalRaidList from "../CurrentCapitalRaidList/currentCapitalRaidList.jsx";
-import Loader from "../Loader/Loader.jsx"; // Importa el componente de loader
+import Loader from "../Loader/Loader.jsx"; 
 import { getClanCapitalRaidSeasons, fetchClanMembersData } from "../../Services/ConnectAPI.js";
 
 export default function CurrentCapitalRaidContainer() {
-    const [loading, setLoading] = useState(true); // Estado para controlar si se está cargando o no
+    const [loading, setLoading] = useState(true); 
     const [members, setMembers] = useState([]);
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
@@ -30,10 +30,10 @@ export default function CurrentCapitalRaidContainer() {
                 setMembers(capitalRaidData.members);
                 setStartTime(capitalRaidData.startTime);
                 setEndTime(capitalRaidData.endTime);
-                setLoading(false); // Una vez que se completó la carga, actualizamos el estado para dejar de mostrar el loader
+                setLoading(false); 
             } catch(error) {
                 console.error('Error fetching data:', error);
-                setLoading(false); // En caso de error, también dejamos de mostrar el loader
+                setLoading(false); 
             }
         }
 
@@ -42,7 +42,7 @@ export default function CurrentCapitalRaidContainer() {
 
     return (
         <>
-            {loading ? ( // Mostrar el loader mientras loading es true
+            {loading ? (
                 <Loader />
             ) : (
                 <CurrentCapitalRaidList members={members} startTime={startTime} endTime={endTime} />

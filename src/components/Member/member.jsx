@@ -6,14 +6,13 @@ function Member(props) {
     const [isCopied, setIsCopied] = useState(false);
     const playerTagRef = useRef(null);
 
-    // Función para obtener la URL de la imagen del Town Hall
     const getTownHallImage = (level) => {
         if (level === 16) {
             return "../public/th16.png";
         } else if (level === 15) {
             return "../public/th15.png";
         }
-        return null; // No devuelve ninguna imagen si no es nivel 15 o 16
+        return null; 
     };
 
     const townHallImage = getTownHallImage(props.townHallLevel);

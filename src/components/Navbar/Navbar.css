@@ -15,17 +15,17 @@
 .nav-container {
   position: fixed;
   top: 0;
-  left: -300px; /* Oculta la navegación fuera de la pantalla */
+  left: -300px; 
   width: 250px;
   height: 100vh;
   background-color: rgba(65, 64, 64, 0.8);
-  transition: left 0.3s ease; /* Agrega una transición suave al abrir/cerrar */
+  transition: left 0.3s ease; 
   backdrop-filter: blur(10px);
   z-index: 1000;
 }
   
 .nav-container.open {
-    left: 0; /* Muestra la navegación cuando está abierta */
+    left: 0; 
 }
 
 ul {

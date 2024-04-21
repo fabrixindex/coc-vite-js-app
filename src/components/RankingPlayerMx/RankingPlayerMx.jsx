@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getPlayersRankingMex } from "../../Services/ConnectAPI.js";
-import "./RankingPlayerMx.css"; // Asegúrate de tener los estilos en este archivo
+import "./RankingPlayerMx.css"; 
 
 function RankingPlayerMx() {
     const [ranking, setInfo] = useState(null);
@@ -33,59 +33,53 @@ function RankingPlayerMx() {
     const handleShowLess = () => {
         setVisiblePlayersMex((prev) => {
             const nextValue = prev - 5;
-            return Math.max(nextValue, 5); // Limita el valor mínimo a 5
+            return Math.max(nextValue, 5); 
         });
     };    
 
     return (
         <div className="ranking-player-table-mx"> 
-            <table className="player-table-mx"> 
-                <thead>
+            <div className="container-table-mx">
+                <table className="player-table-mx"> 
+                    <thead>
 
-                    <tr>
-                        <th colSpan="4" className="table-title-mx">Ranking Mejores Jugadores de Mexico</th>
-                    </tr>
-
-                    <tr>
-                        <th className="column-title-mx">N°</th>
-                        <th className="column-title-mx">Jugador</th>
-                        <th className="column-title-mx">Clan</th>
-                        <th className="column-title-mx">Trofeos</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    {ranking.slice(0, visiblePlayersMex).map((player, index) => ( 
-                        <tr key={index} className="data-row">
-
-                            <td className="table-cell">{index + 1}.</td>
-
-                            <td className="table-cell">
-                                <div className="table-rank-name-league-mx">
-                                    <img src={player.league.iconUrls.medium} alt="League Icon" className="league-icon" />
-                                    <p className="player-name-mx">{player.name}</p>
-                                </div>
-                            </td>
-
-                            <td className="table-cell">
-                                <div className="table-rank-clan-name-img-mx">
-                                    <img src={player.clan.badgeUrls.medium} alt="Clan Badge" className="clan-badge-mx" />
-                                    <p className="clan-name-mx">{player.clan.name}</p>
-                                </div>
-                            </td>
-
-                            <td className="table-cell">
-                                <div className="table-rank-trophy-mx">
-                                    <img src="../public/trophy.png" alt="league" className="trophy-icon-mx" />
-                                    <p className="trophy-count-mx">{player.trophies}</p>
-                                </div>
-                            </td>
-                            
+                        <tr>
+                            <th colSpan="3" className="table-title-mx">Ranking Mejores Jugadores de Mexico</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+
+                        <tr>
+                            <th className="column-title-mx">N°</th>
+                            <th className="column-title-mx">Jugador</th>
+                            <th className="column-title-mx">Trofeos</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        {ranking.slice(0, visiblePlayersMex).map((player, index) => ( 
+                            <tr key={index} className="data-row">
+
+                                <td className="table-cell">{index + 1}.</td>
+
+                                <td className="table-cell">
+                                    <div className="table-rank-name-league-mx">
+                                        <img src={player.league.iconUrls.medium} alt="League Icon" className="league-icon" />
+                                        <p className="player-name-mx">{player.name}</p>
+                                    </div>
+                                </td>
+
+                                <td className="table-cell">
+                                    <div className="table-rank-trophy-mx">
+                                        <img src="../public/trophy.png" alt="league" className="trophy-icon-mx" />
+                                        <p className="trophy-count-mx">{player.trophies}</p>
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             <div className="btn-show-more-less-container">
                 {ranking.length > visiblePlayersMex && (

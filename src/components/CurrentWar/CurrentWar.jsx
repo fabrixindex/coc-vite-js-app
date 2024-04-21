@@ -39,7 +39,7 @@ function CurrentWar() {
         } else if (level === 15) {
             return "../public/th15.png";
         }
-        return null; // No devuelve ninguna imagen si no es nivel 15 o 16
+        return null; 
     };
 
     const preparationStartTime = new Date(
@@ -137,8 +137,8 @@ function CurrentWar() {
 
                 <div className="participants">
                 {war.clan.members && war.clan.members
-                    .slice() // Crear una copia del array para no modificar el original
-                    .sort((a, b) => a.mapPosition - b.mapPosition) // Ordenar por mapPosition
+                    .slice() 
+                    .sort((a, b) => a.mapPosition - b.mapPosition) 
                     .map((member, index) => (
 
                         <div key={index} className="participant-card">

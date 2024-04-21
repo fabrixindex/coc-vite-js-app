@@ -4,7 +4,7 @@ import "./RankingClanArg.css";
 
 function RankingClanArg() {
     const [ranking, setInfo] = useState(null);
-    const [visibleClans, setVisibleClans] = useState(5); // Estado para controlar cuántos clanes mostrar
+    const [visibleClans, setVisibleClans] = useState(5); 
 
     useEffect(() => {
         async function fetchRankingData() {

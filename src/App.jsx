@@ -1,6 +1,6 @@
 import './App.css'
 import CurrentCapitalRaidContainer from './components/CurrentCapitalRaidContainer/currentCapitalRaidContainer.jsx'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ClanAndMembers from './components/ClanAndMembers/ClanAndMembers.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
 import MemberDetailContainer from './components/MemberDetailContainer/MemberDetailContainer.jsx'

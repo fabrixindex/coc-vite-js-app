@@ -2,24 +2,23 @@ import React, { useState, useEffect } from "react";
 import RankingClanArg from "../RankingClanArg/RankingClanArg.jsx";
 import RankingPlayerArg from "../RankingPlayerArg/RankingPlayerArg.jsx";
 import RankingPlayerMex from "../RankingPlayerMx/RankingPlayerMx.jsx";
-import Loader from "../Loader/Loader.jsx"; // Importa el componente de loader
+import Loader from "../Loader/Loader.jsx"; 
 import "./Rankings.css";
 
 function Rankings() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Simulamos un tiempo de carga
         const timeout = setTimeout(() => {
-            setLoading(false); // Cuando termina la carga, actualizamos el estado para dejar de mostrar el loader
-        }, 2000); // Cambia este valor al tiempo de carga real de tus componentes
+            setLoading(false); 
+        }, 2000); 
 
-        return () => clearTimeout(timeout); // Limpiamos el timeout cuando el componente se desmonta
+        return () => clearTimeout(timeout); 
     }, []);
 
     return (
         <>
-            {loading ? ( // Mostrar el loader mientras loading es true
+            {loading ? ( 
                 <Loader />
             ) : (
                 <>

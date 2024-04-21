@@ -36,12 +36,11 @@ function RankingPlayerArg() {
             <table>
                 <thead>
                     <tr>
-                        <th colSpan="4">Ranking Mejores Jugadores de Argentina</th>
+                        <th colSpan="3">Ranking Mejores Jugadores de Argentina</th>
                     </tr>
                     <tr>
                         <th>N°</th>
                         <th>Jugador</th>
-                        <th>Clan</th>
                         <th>Trofeos</th>
                     </tr>
                 </thead>
@@ -54,13 +53,6 @@ function RankingPlayerArg() {
                                 <div className="table-rank-name-league">
                                     <img src={player.league.iconUrls.medium} alt="League Icon" />
                                     <p className="table-rank-p">{player.name}</p>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div className="table-rank-clan-name-img">
-                                    <img src={player.clan.badgeUrls.medium} alt="Clan Badge" />
-                                    <p className="table-rank-p">{player.clan.name}</p>
                                 </div>
                             </td>
 

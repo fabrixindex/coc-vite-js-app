@@ -1,8 +1,7 @@
-/* Estilos generales del contenedor de la tabla */
 .ranking-player-table-mx {
     max-width: 100%;
-    width: 75%; /* Cambia el valor según sea necesario */
-    margin: 0 auto; /* Centra horizontalmente */
+    width: 50%; 
+    margin: 0 auto; 
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     margin-top: 2rem;
@@ -10,7 +9,6 @@
     cursor: pointer;
 }
 
-/* Estilos para la tabla */
 .player-table-mx {
     max-width: 100%;
     width: auto;
@@ -22,7 +20,6 @@
     margin-bottom: 1rem;
 }
 
-/* Estilos para el encabezado de la tabla */
 .table-title-mx {
     background-color: #a82727;
     color: white;
@@ -32,7 +29,6 @@
     font-size: 25px;
 }
 
-/* Estilos comunes para los títulos de las columnas */
 .column-title-mx {
     background-color: #a82727;
     padding: 8px;
@@ -41,7 +37,6 @@
     font-size: 25px;
 }
 
-/* Estilos para cada celda de datos */
 .table-cell {
     white-space: nowrap;
     padding: 10px;
@@ -50,7 +45,6 @@
     text-align: center;
 }
 
-/* Alternar colores de fondo para filas impares y pares */
 .data-row:nth-child(odd) {
     background-color: transparent;
 }
@@ -63,21 +57,18 @@
     background-color: #76aa61;
 }
 
-/* Estilos para el texto de los nombres de jugadores y clanes */
-.player-name-mx, .clan-name-mx {
+.player-name-mx {
     margin-left: 10px;
     word-break: break-all;
 }
 
-/* Estilos para los contenedores dentro de las celdas */
-.table-rank-name-league-mx, .table-rank-clan-name-img-mx, .table-rank-trophy-mx {
+.table-rank-name-league-mx, .table-rank-trophy-mx {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-left: 10px;
 }
 
-/* Estilos para los íconos */
 .trophy-icon-mx {
     max-width: 45px;
     max-height: 45px;
@@ -92,11 +83,6 @@
     color: white;
 }
 
-.clan-badge-mx {
-    max-width: 50px;
-    max-height: 50px;
-}
-
 .show-more-btn-py-mx {
     background-color: rgb(138, 27, 27);
     color: white;
@@ -107,7 +93,7 @@
     font-weight: bold;
     font-size: 15px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease; /* Transición suave */
+    transition: box-shadow 0.3s ease; 
     margin-top: 1rem;
 }
 
@@ -120,7 +106,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 15px;
-    transition: box-shadow 0.3s ease; /* Transición suave */
+    transition: box-shadow 0.3s ease; 
     margin-top: 1rem;
 }
 
@@ -132,4 +118,42 @@
 .show-less-btn-py-mx:hover {
     background-color: rgb(110, 62, 58);
     box-shadow: 0 6px 10px rgba(252, 251, 251, 0.2);
+}
+
+@media only screen and (max-width: 768px) {
+    .ranking-player-table-mx {
+        width: 100%; 
+        font-size: 16px; 
+        margin-left: 0.5rem;
+    }
+
+    .player-table-mx {
+        margin-right: 1rem; 
+    }
+
+    .table-title-mx, .column-title-mx {
+        font-size: 20px; 
+    }
+
+    .table-rank-name-league-mx, .table-rank-trophy-mx {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .table-cell {
+        padding: 8px; /
+    }
+
+    .trophy-icon-mx {
+        max-width: 50px; 
+        max-height: 50px;
+    }
+
+    .show-more-btn-py-mx, .show-less-btn-py-mx {
+        padding: 10px 15px; 
+        font-size: 14px; 
+    }
 }

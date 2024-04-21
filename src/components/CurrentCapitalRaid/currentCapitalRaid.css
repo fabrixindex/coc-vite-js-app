@@ -3,11 +3,18 @@
     font-family: Arial, sans-serif;
     display: flex;
     align-items: center;
+    margin-bottom: 12px;
 }
 
 .capital-raid-list-item p {
     margin: 2px;
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .capital-raid-list-item p {
+        font-size: 1.1rem; 
+    }
 }
 
 .green-circle {

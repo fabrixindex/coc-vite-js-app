@@ -5,9 +5,9 @@
     margin: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
-    text-align: center; /* Centrar el contenido */
-    font-family: 'Arial', sans-serif; /* Cambiar la fuente de letra */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Agregar sombra */
+    text-align: center; 
+    font-family: 'Arial', sans-serif; 
+    box-shadow: 2px 2px 5px rgba(245, 244, 244, 0.973); 
     width: 350px;
 }
 
@@ -43,10 +43,10 @@
 
 .card-info {
     display: flex;
-    align-items: center; /* Asegura el centrado vertical de los contenidos del p */
-    justify-content: center; /* Centra horizontalmente el contenido dentro del p */
-    flex-grow: 1; /* Hace que cada p ocupe un espacio igual y se expanda para llenar el contenedor */
-    text-align: center; /* Centra el texto dentro del p */
+    align-items: center; 
+    justify-content: center; 
+    flex-grow: 1; 
+    text-align: center; 
     font-size: 20px;
 }
 
@@ -84,4 +84,14 @@
 .league-icon-member {
     max-width: 65px;
     max-height: 65px;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        width: 300px; 
+    }
+
+    .card-button {
+        width: 80%; 
+    }
 }

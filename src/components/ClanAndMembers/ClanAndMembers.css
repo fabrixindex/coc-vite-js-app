@@ -30,7 +30,7 @@
 
 .clan-img {
     width: 100%; 
-    height: auto; /* Altura automática para mantener la relación de aspecto */
+    height: auto; 
     object-fit: cover;
     filter: drop-shadow(0 1px 20px rgb(245, 0, 0));
 }
@@ -174,40 +174,48 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        height: auto;
+        margin-top: 1rem;
+    }
+
     .clan-card-container {
+        grid-template-columns: 1fr; 
+        padding: 20px; 
+        border-radius: 20px;
+        gap: 0;
+    }
+
+    .clan-img-container {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .clan-img-container {
-        width: 100%;
-    }
-
     .clan-img {
-        width: 50%; 
-        height: auto; 
-    }
-
-    .clan-war-league {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        width: 200px; 
+        height: 200px; 
     }
 
     .league-img {
-        width: 20%; 
-        height: auto; 
+        width: 80px; 
+        height: 80px; 
     }
 
     .clan-tag {
-        position: static; 
+        position: relative;
         margin-top: 10px; 
+        right: auto; 
+        top: auto; 
+        order: -1; 
     }
 
     .clan-card-container-child {
         width: 100%;
-        padding: 20px; 
+    }
+
+    .clan-war-league {
+        margin-bottom: 5px;
+        margin-top: 12px;
     }
 }
