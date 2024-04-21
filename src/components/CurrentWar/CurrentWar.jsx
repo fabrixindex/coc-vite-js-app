@@ -128,8 +128,8 @@ function CurrentWar() {
                                 <td className="oponent-destruction-column">Porcentaje de destrucción: %{war.opponent.destructionPercentage}</td>
                             </tr>
                             <tr>
-                                <td className="clan-stars-column"><img src="../public/star.png" alt="Star" className="star-img-table-clan" /><strong>{war.clan.stars}</strong></td>
-                                <td className="clan-oponent-column"><img src="../public/star.png" alt="Star" className="star-img-table" /><strong>{war.opponent.stars}</strong></td>
+                                <td className="clan-stars-column"><img src="https://imgur.com/J82orxp.jpg" alt="Star" className="star-img-table-clan" /><strong>{war.clan.stars}</strong></td>
+                                <td className="clan-oponent-column"><img src="https://imgur.com/J82orxp.jpg" alt="Star" className="star-img-table" /><strong>{war.opponent.stars}</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -160,13 +160,13 @@ function CurrentWar() {
                                     <div key={index} className="attack-card">
 
                                         <div className="attack-card-child-1">
-                                            <img src="../public/escudo.png" alt="escudo" className="escudo-img" />
+                                            <img src="https://imgur.com/3AWSRKg.jpg" alt="escudo" className="escudo-img" />
                                             <p className="attack-card-child-1-p"><strong> Ataque N° {index + 1}:</strong></p>
                                         </div>
 
                                         <div className="attack-card-child-2-stars">
                                             {Array.from({ length: attack.stars }, (_, i) => (
-                                                <img key={i} src="../public/star.png" alt="Star" className="star-img" />
+                                                <img key={i} src="https://imgur.com/J82orxp.jpg" alt="Star" className="star-img" />
                                             ))}
                                         </div>
 

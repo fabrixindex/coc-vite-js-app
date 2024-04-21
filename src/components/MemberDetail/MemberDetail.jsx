@@ -9,9 +9,9 @@ function MemberDetail(props) {
                  <p> {props.tag} </p>
             </div>
 
-            <div className="card-header">
+            <div className="card-header-member-detail">
                 <img src={props.clanBadgeUrlMedium} alt="Clan Badge" className="clan-badge" />
-                <h2 className="player-name">{props.name}</h2>
+                <h2 className="player-name-member-detail">{props.name}</h2>
                 <img src={props.leagueIconUrlMedium} alt="League Icon" className="league-icon-member-detail" />
             </div>
             

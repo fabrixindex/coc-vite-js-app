@@ -17,7 +17,7 @@ function Member(props) {
 
     const townHallImage = getTownHallImage(props.townHallLevel);
 
-    const copyToClipboard = () => {
+    /*const copyToClipboard = () => {
         const textToCopy = playerTagRef.current.textContent.trim();
         navigator.clipboard.writeText(textToCopy);
         setIsCopied(true);
@@ -25,15 +25,15 @@ function Member(props) {
         setTimeout(() => {
             setIsCopied(false);
         }, 3000); 
-    };
+    };*/
 
     return (
         <div className="card-container">
             <div className="card-header">
                 <img src={props.league.iconUrls.small} alt="League Icon" className="league-icon-member" />
                 <h3 className="player-name">{props.name}</h3>
-                {!isCopied && <p ref={playerTagRef} onClick={copyToClipboard} className="player-tag">{props.tag}</p>}
-                {isCopied && <span style={{ color: "white" }}>¡Copiado!</span>}
+                {/*{!isCopied && <p ref={playerTagRef} onClick={copyToClipboard} className="player-tag">{props.tag}</p>}
+                {isCopied && <span style={{ color: "white" }}>¡Copiado!</span>} */}
             </div>
 
             <div className="card-description-th-trophy">

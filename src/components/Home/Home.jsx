@@ -1,9 +1,22 @@
-import "./Home.css"
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader.jsx"; 
+import "./Home.css"
 
 function Home() {
+    const [loading, setLoading] = useState(true);
 
-    return(
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setLoading(false);
+        }, 2000); 
+
+        return () => clearTimeout(timeout);
+    }, []);
+
+    return loading ? (
+        <Loader />
+    ) : (
         <>
             <div className="home-card-container">
                 <Link to={"/losMagiosClan"} className="home-card-1-container">
