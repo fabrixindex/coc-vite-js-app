@@ -65,7 +65,7 @@ function RankingPlayerArg() {
 
                             <td>
                                 <div className="table-rank-trophy">
-                                    <img src="../public/trophy.png" alt="league" className="trophy-img" />
+                                    <img src="/trophy.png" alt="league" className="trophy-img" />
                                     <p className="table-rank-points">{player.trophies}</p>
                                 </div>
                             </td>

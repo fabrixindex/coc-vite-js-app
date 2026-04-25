@@ -77,7 +77,7 @@ function RankingPlayerMx() {
 
                                 <td className="table-cell">
                                     <div className="table-rank-trophy-mx">
-                                        <img src="../public/trophy.png" alt="league" className="trophy-icon-mx" />
+                                        <img src="/trophy.png" alt="league" className="trophy-icon-mx" />
                                         <p className="trophy-count-mx">{player.trophies}</p>
                                     </div>
                                 </td>

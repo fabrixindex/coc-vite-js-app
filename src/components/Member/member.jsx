@@ -6,9 +6,9 @@ function Member(props) {
 
     const getTownHallImage = (level) => {
         if (level === 18) {
-            return "/public/th18.png";
+            return "/th18.png";
         } else if (level === 17) {
-            return "/public/th17.png";
+            return "/th17.png";
         }
         return null; 
     };

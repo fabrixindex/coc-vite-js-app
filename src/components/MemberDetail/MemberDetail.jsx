@@ -10,9 +10,9 @@ function MemberDetail(props) {
             </div>
 
             <div className="card-header-member-detail">
-                <img src={props.clanBadgeUrlMedium} alt="Clan Badge" className="clan-badge" />
+                <img src={props.clanBadgeUrlMedium} alt="Clan Badge" className="clan-badge-member-detail" />
                 <h2 className="player-name-member-detail">{props.name}</h2>
-                <img src={props.leagueIconUrlMedium} alt="League Icon" className="league-icon-member-detail" />
+                <img src={props.leagueIconUrlMedium} alt="League Icon" className="league-badge-member-detail" />
             </div>
             
 

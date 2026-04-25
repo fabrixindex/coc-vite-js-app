@@ -58,7 +58,7 @@ function RankingClanArg() {
                         <td>
                             <div className="table-rank-arg-conainer-3">
                                 <p className="table-rank-arg-conainer-3-points">{clan.clanPoints}</p>
-                                <img src="../public/trophy.png" alt="league" className="trophy-img" />
+                                <img src="/trophy.png" alt="league" className="trophy-img" />
                             </div>
                         </td>
                     </tr>

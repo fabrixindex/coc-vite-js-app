@@ -62,7 +62,7 @@ function ClanAndMembers() {
                     <div className="clan-img-container">
                         <img src={clan.badgeUrls?.large} alt="Insignia del clan" className="clan-img" />
                         <p className="clan-war-league">
-                            <img src="../public/league.png" alt="league" className="league-img" /> 
+                            <img src="/league.png" alt="league" className="league-img" /> 
                             <span className="bg-text">{clan.warLeague.name}</span>
                         </p>
 
@@ -80,7 +80,6 @@ function ClanAndMembers() {
                             <p>Ubicación: {clan.location?.name}</p>
                             <p>Liga de la capital del clan: {clan.capitalLeague?.name}</p>
                             <p>Puntos del clan: {clan.clanPoints}</p>
-                            <p>Puntos de capital del clan: {clan.clanCapitalPoints}</p>
                             <p>Idioma del chat del clan: {clan.chatLanguage?.name}</p>
                             <p>Nivel de ayuntamiento requerido: {clan.requiredTownhallLevel}</p>
                             <p>Trofeos requeridos: {clan.requiredTrophies}</p>
