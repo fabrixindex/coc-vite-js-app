@@ -3,58 +3,66 @@ import { Link } from "react-router-dom";
 import "./member.css";
 
 function Member(props) {
-    const [isCopied, setIsCopied] = useState(false);
-    const playerTagRef = useRef(null);
 
     const getTownHallImage = (level) => {
         if (level === 18) {
-            return "../public/th18.png";
+            return "/public/th18.png";
         } else if (level === 17) {
-            return "../public/th17.png";
+            return "/public/th17.png";
         }
         return null; 
     };
 
     const townHallImage = getTownHallImage(props.townHallLevel);
 
-    /*const copyToClipboard = () => {
-        const textToCopy = playerTagRef.current.textContent.trim();
-        navigator.clipboard.writeText(textToCopy);
-        setIsCopied(true);
+    const getRole = (role) => {
+        if (role === "admin") {
+            return "Veteran";
+        } else if (role == "coLeader") {
+            return "Coleader";
+        } else if (role == "member") {
+            return "Member";
+        } else if (role == "leader") {
+            return "Leader"
+        }
+        return null
+    };
 
-        setTimeout(() => {
-            setIsCopied(false);
-        }, 3000); 
-    };*/
+    const memberRole = getRole(props.role);
 
     return (
-        <div className="card-container">
-            <div className="card-header">
-                <img 
-                    src={props.leagueTier?.iconUrls?.small} 
-                    alt="League Icon" 
-                    className="league-icon-member" 
-                />
-                <h3 className="player-name">{props.name}</h3>
-                {/*{!isCopied && <p ref={playerTagRef} onClick={copyToClipboard} className="player-tag">{props.tag}</p>}
-                {isCopied && <span style={{ color: "white" }}>¡Copiado!</span>} */}
-            </div>
+        <Link 
+            to={`/player/%23${props.tag.substring(1)}`}
+            className="card-member-link"
+        >
+            <div className="card-member-container">
+                <div className="card-member-header">
+                    <img 
+                        src={props.leagueTier?.iconUrls?.small} 
+                        alt="League Icon" 
+                        className="league-icon-member" 
+                    />
+                    <h3 className="player-name">{props.name}</h3>
+                </div>
 
-            <div className="card-description-th-trophy">
-                <p className="card-info">
-                    {townHallImage && <img src={townHallImage} alt="Town Hall" className="th-img" />}
-                </p>
-                <p className="card-info"><img src="../public/trophy.png" alt="league" className="trophy-img" /> <strong>{props.trophies}</strong></p>
-            </div>
+                <div className="card-description-th-trophy">
+                    <p className="card-member-th-img">
+                        {townHallImage && <img src={townHallImage} alt="Town Hall" className="th-img" />}
+                    </p>
+                    <p className="card-info-number-trophies"><img src="/trophy.png" alt="league" className="trophy-img-member" /> <strong>{props.trophies}</strong></p>
+                </div>
 
-            <div className="card-description">
-                <p className="card-info">👑 Rol: <strong>{props.role}</strong></p>
-                <p className="card-info">✅ Donaciones: <strong>{props.donations}</strong></p>
-                <p className="card-info">❌ Donaciones Recibidas: <strong>{props.donationsReceived}</strong></p>
-            </div>
+                <div className="card-member-description">
+                    <p className="card-member-info-role">👑 Rol: <strong> {memberRole} </strong></p>
+                    <p className="card-member-info-donations">✅ Donaciones: <strong>{props.donations}</strong></p>
+                    <p className="card-member-info-donations-received">⏬️ Donaciones Recibidas: <strong>{props.donationsReceived}</strong></p>
+                </div>
 
-            <Link to={`/player/%23${props.tag.substring(1)}`}><button className="card-button">Ver más</button></Link>
-        </div>
+                <div className="card-member-div-button">
+                    <button className="card-member-button-more-info">Ver más</button>
+                </div>
+            </div>
+        </Link>
     );
 }
 
