@@ -7,10 +7,10 @@ function Member(props) {
     const playerTagRef = useRef(null);
 
     const getTownHallImage = (level) => {
-        if (level === 16) {
-            return "../public/th16.png";
-        } else if (level === 15) {
-            return "../public/th15.png";
+        if (level === 18) {
+            return "../public/th18.png";
+        } else if (level === 17) {
+            return "../public/th17.png";
         }
         return null; 
     };
@@ -30,7 +30,11 @@ function Member(props) {
     return (
         <div className="card-container">
             <div className="card-header">
-                <img src={props.league.iconUrls.small} alt="League Icon" className="league-icon-member" />
+                <img 
+                    src={props.leagueTier?.iconUrls?.small} 
+                    alt="League Icon" 
+                    className="league-icon-member" 
+                />
                 <h3 className="player-name">{props.name}</h3>
                 {/*{!isCopied && <p ref={playerTagRef} onClick={copyToClipboard} className="player-tag">{props.tag}</p>}
                 {isCopied && <span style={{ color: "white" }}>¡Copiado!</span>} */}

@@ -2,7 +2,7 @@ const TOKEN = process.env.TOKEN;
 const CLAN = process.env.CLAN;
 const LEAGUEID = process.env.LEAGUEID;
 const SEASONID = process.env.SEASONID;
-const ARGENTINALOCATIONID = process.env.ARGENTINALOCATIONID;
+const ARGENTINALOCATIONID = "32000017";
 const MEXICOLOCATIONID = "32000153"
 
 const clanUrl = `/api/v1/clans/${encodeURIComponent(CLAN)}`;

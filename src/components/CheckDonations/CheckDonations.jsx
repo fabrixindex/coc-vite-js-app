@@ -93,7 +93,11 @@ function CheckDonations() {
                 {members.map((member, index) => (
                     <div className="cards-donations" key={index}>
                         <div className="card-donations-header">
-                            <img src={member.league.iconUrls.small} alt="League Icon" className="league-icon" />
+                        <img 
+                            src={member.leagueTier?.iconUrls?.small} 
+                            alt="League Icon" 
+                            className="league-icon" 
+                        />
                             <Link to={`/player/%23${member.tag.substring(1)}`} className="link-unstyled"><h4 className="card-donations-title">{member.name}</h4></Link>
                         </div>
 

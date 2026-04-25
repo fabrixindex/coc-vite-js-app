@@ -51,8 +51,15 @@ function RankingPlayerArg() {
 
                             <td>
                                 <div className="table-rank-name-league">
-                                    <img src={player.league.iconUrls.medium} alt="League Icon" />
-                                    <p className="table-rank-p">{player.name}</p>
+                                    <img 
+                                        src={
+                                            player.leagueTier?.iconUrls?.large || 
+                                            player.league?.iconUrls?.medium
+                                        } 
+                                        alt="League Icon" 
+                                        className="league-icon" 
+                                    />
+                                    <p className="player-name-p">{player.name}</p>
                                 </div>
                             </td>
 

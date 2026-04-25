@@ -28,11 +28,10 @@ function MemberDetailList({ member }) {
             clanBadgeUrlSmall={member.clan.badgeUrls.small}
             clanBadgeUrlMedium={member.clan.badgeUrls.medium}
             clanBadgeUrlLarge={member.clan.badgeUrls.large}
-            leagueId={member.league.id}
-            leagueName={member.league.name}
-            leagueIconUrlSmall={member.league.iconUrls.small}
-            leagueIconUrlTiny={member.league.iconUrls.tiny}
-            leagueIconUrlMedium={member.league.iconUrls.medium}
+            leagueId={member.leagueTier?.id}
+            leagueName={member.leagueTier?.name}
+            leagueIconUrlSmall={member.leagueTier?.iconUrls?.small}
+            leagueIconUrlMedium={member.leagueTier?.iconUrls?.large}
             builderBaseLeagueId={member.builderBaseLeague.id}
             builderBaseLeagueName={member.builderBaseLeague.name}
         />

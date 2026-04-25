@@ -15,7 +15,7 @@ function MemberList({ members }) {
                 trophies={member.trophies}
                 donations={member.donations}
                 donationsReceived={member.donationsReceived}
-                league={member.league} 
+                leagueTier={member.leagueTier}
                 expLevel={member.expLevel}
               />
             ))}

@@ -62,10 +62,17 @@ function RankingPlayerMx() {
                                 <td className="table-cell">{index + 1}.</td>
 
                                 <td className="table-cell">
-                                    <div className="table-rank-name-league-mx">
-                                        <img src={player.league.iconUrls.medium} alt="League Icon" className="league-icon" />
-                                        <p className="player-name-mx">{player.name}</p>
-                                    </div>
+                                <div className="table-rank-name-league-mx">
+                                    <img 
+                                        src={
+                                            player.leagueTier?.iconUrls?.large || 
+                                            player.league?.iconUrls?.medium
+                                        } 
+                                        alt="League Icon" 
+                                        className="league-icon" 
+                                    />
+                                    <p className="player-name-mx">{player.name}</p>
+                                </div>
                                 </td>
 
                                 <td className="table-cell">
