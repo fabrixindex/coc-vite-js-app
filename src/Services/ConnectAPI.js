@@ -1,184 +1,81 @@
-const TOKEN = process.env.TOKEN;
-const CLAN = process.env.CLAN;
-const LEAGUEID = process.env.LEAGUEID;
-const SEASONID = process.env.SEASONID;
-const ARGENTINALOCATIONID = "32000017";
-const MEXICOLOCATIONID = "32000153"
-
-const clanUrl = `/api/v1/clans/${encodeURIComponent(CLAN)}`;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const headers = {
-  'Accept': 'application/json',
-  'authorization': `Bearer ${TOKEN}`
+  Accept: 'application/json',
 };
 
-export async function getClanData() {
+async function getJSON(path) {
   try {
-    const response = await fetch(clanUrl, {
+    const response = await fetch(`${API_URL}${path}`, {
       method: 'GET',
-      headers: headers
+      headers,
     });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
 
-export async function fetchClanMembersData() {
-    try {
-      const membersUrl = clanUrl + "/members";
-      const response = await fetch(membersUrl, {
-        method: 'GET',
-        headers: headers
-      });
-  
-      const data = await response.json();
-      console.log("MIEMBROS", data);
-      return data;
-    } catch (error) {
-      console.error('Error:', error);
+    const data = await response.json();
+
+    if (!response.ok) {
+      // El backend devuelve { error: "..." } cuando algo falla
+      console.error('Error de la API:', data.error || data);
+      return null;
     }
-  };
-  
-export async function getClanCapitalRaidSeasons() {
-  try{
-    const capitalUrl = clanUrl + "/capitalraidseasons";
-    const response = await fetch(capitalUrl, {
-      method: 'GET',
-      headers: headers
-    });
 
-    const data = await response.json();
-    const currentCapitalRaid = data.items[0];
-    return currentCapitalRaid;
+    return data;
   } catch (error) {
-    console.log('Error:', error);
-  }
-};
-
-export async function getWarLeagueGroup() {
-  try{
-    const LeagueGroupUrl = clanUrl + "/currentwar/leaguegroup";
-    const response = await fetch(LeagueGroupUrl, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    console.log("WARLOG:", data)
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
-  }
-};
-
-export async function getLeagueSeasonData() {
-  try{
-    const LeagueSeasonUrl = `/api/v1/leagues/${encodeURIComponent(LEAGUEID)}/seasons/${encodeURIComponent(SEASONID)}?limit=20`;
-    console.log(LeagueSeasonUrl)
-    const response = await fetch(LeagueSeasonUrl, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    console.log("LEAGUE SEASON:", data)
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
-  }
-};
-
-export async function getLocationClanRankingArg() {
-  try{
-    const LocationClanRankingArgURL = `/api/v1/locations/${encodeURIComponent(ARGENTINALOCATIONID)}/rankings/clans?limit=15`;
-    
-    const response = await fetch(LocationClanRankingArgURL, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
-  }
-};
-
-export async function getPlayersRankingArg() {
-  try{
-    const PlayersRankingArgURL = `/api/v1/locations/${encodeURIComponent(ARGENTINALOCATIONID)}/rankings/players?limit=20`;
-    
-    const response = await fetch(PlayersRankingArgURL, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
-  }
-};
-
-export async function getPlayersRankingMex() {
-  try{
-    const PlayerRankingMexURL = `/api/v1/locations/${encodeURIComponent(MEXICOLOCATIONID)}/rankings/players?limit=20`;
-    
-    const response = await fetch(PlayerRankingMexURL, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
-  }
-};
-
-export async function getSinglePlayer(PLAYERTAG) {
-  try{
-
-    const playerUrl = `/api/v1/players/${encodeURIComponent(PLAYERTAG)}`;
-    
-    const response = await fetch(playerUrl, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    console.log("PLAYER:", data)
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
+    console.error('Error de conexión con el backend:', error);
+    return null;
   }
 }
 
+export async function getClanData() {
+  return getJSON('/clan');
+}
+
+export async function fetchClanMembersData() {
+  const data = await getJSON('/clan/members');
+  console.log('MIEMBROS', data);
+  return data;
+}
+
+export async function getClanCapitalRaidSeasons() {
+  // El backend ya devuelve directamente el item más reciente (no el array completo)
+  return getJSON('/clan/capital-raids');
+}
+
+export async function getWarLeagueGroup() {
+  const data = await getJSON('/clan/war-league-group');
+  console.log('WARLOG:', data);
+  return data;
+}
+
+export async function getLeagueSeasonData() {
+  const data = await getJSON('/league/season');
+  console.log('LEAGUE SEASON:', data);
+  return data;
+}
+
+export async function getLocationClanRankingArg() {
+  return getJSON('/rankings/clans/ar');
+}
+
+export async function getPlayersRankingArg() {
+  return getJSON('/rankings/players/ar');
+}
+
+export async function getPlayersRankingMex() {
+  return getJSON('/rankings/players/mx');
+}
+
+export async function getSinglePlayer(PLAYERTAG) {
+  // El tag va SIN el "#" en la URL (el backend se lo vuelve a agregar).
+  // Si PLAYERTAG viene con "#", se lo sacamos acá para no romper la ruta.
+  const cleanTag = PLAYERTAG.startsWith('#') ? PLAYERTAG.slice(1) : PLAYERTAG;
+  const data = await getJSON(`/players/${encodeURIComponent(cleanTag)}`);
+  console.log('PLAYER:', data);
+  return data;
+}
+
 export async function getCurrentWarData() {
-  try{
-
-    const warDataUrl = clanUrl + "/currentwar";
-    
-    const response = await fetch(warDataUrl, {
-      method: 'GET',
-      headers: headers
-    });
-
-    const data = await response.json();
-    console.log("WAR:", data)
-    return data;
-
-  }catch(error){
-    console.log('Error:', error);
-  }
-};
-
-getCurrentWarData();
+  const data = await getJSON('/clan/current-war');
+  console.log('WAR:', data);
+  return data;
+}
