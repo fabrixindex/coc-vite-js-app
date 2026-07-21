@@ -7,6 +7,9 @@ function CurrentWar() {
     const [war, setWar] = useState(null);
     const [currentTime, setCurrentTime] = useState(new Date());
     const [loading, setLoading] = useState(true);
+    const [showReminderMenu, setShowReminderMenu] = useState(false);
+    const [modal, setModal] = useState({ open: false, title: "", content: "" });
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         async function fetchWarData() {
@@ -87,6 +90,188 @@ function CurrentWar() {
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
+
+    const attackedMirror = (member) => {
+        const firstAttack = member.attacks && member.attacks[0];
+        if (!firstAttack) return false;
+        const opponentMapPosition = war.opponent.members.find(
+            (opponentMember) => opponentMember.tag === firstAttack.defenderTag
+        )?.mapPosition;
+        return opponentMapPosition === member.mapPosition;
+    };
+
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }).catch((error) => {
+            console.error('Error al copiar al portapapeles:', error);
+        });
+    };
+
+    const openModal = (title, content) => {
+        setCopied(false);
+        setModal({ open: true, title, content });
+    };
+
+    const closeModal = () => {
+        setModal({ open: false, title: "", content: "" });
+    };
+
+    const handleSearchWar = () => {
+        const content = [
+            "⚔️ *BÚSQUEDA DE GUERRA* ⚔️",
+            "                           *DE* ",
+            "🛡️🔥 *CLANES INICIADA* 🔥🛡️",
+        ].join("\n");
+
+        openModal("Búsqueda de guerra", content);
+    };
+
+    const handleRegistrationMessage = () => {
+        const content = [
+            "⚔️ 🔥 *GUERRA DE CLANES* 🔥⚔️",
+            "",
+            "👑 *COLÍDER A CARGO:* xxxxx",
+            "",
+            "⚠️‼️ Ya se encuentra disponible el registro para la próxima guerra de clanes. Recuerda presionar el botón verde para participar.",
+            "",
+            "~~~~~~~~~~~~~~~~~~~~~~~~",
+            "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑",
+        ].join("\n");
+
+        openModal("Registro de guerra", content);
+    };
+
+    const handleReminder = (attackNumber) => {
+        setShowReminderMenu(false);
+        if (!war.clan.members) return;
+
+        const pendingMembers = war.clan.members.filter(
+            (member) => !member.attacks || member.attacks.length < attackNumber
+        );
+
+        const attackWord = attackNumber === 1 ? "primer" : "segundo";
+        const title = attackNumber === 1
+            ? "Recordatorio: 1er ataque"
+            : "Recordatorio: 2do ataque";
+
+        const lines = [
+            "⏱️⚔️‼️ *RECORDATORIO* ‼️⚔️⏱️",
+            "",
+            `🔥 *ATAQUE N° ${attackNumber}*`,
+            "",
+        ];
+
+        if (pendingMembers.length === 0) {
+            lines.push("✅ Todos los jugadores ya realizaron este ataque.");
+        } else {
+            pendingMembers.forEach((member) => lines.push(member.name));
+        }
+
+        lines.push(
+            "",
+            `*Recuerden realizar su ${attackWord} ataque en guerra!!*`,
+            "~~~~~~~~~~~~~~~~~~~~~~~~",
+            "⚔️🛡️ *CÚPULA DEL CLAN* 🛡️⚔️"
+        );
+
+        openModal(title, lines.join("\n"));
+    };
+
+    const handleSanctions = () => {
+        if (!war.clan.members) return;
+    
+        const maxStars = war.teamSize * 3;
+        const isPerfectWar = war.clan.stars >= maxStars && war.clan.destructionPercentage >= 100;
+    
+        const attackedTags = new Set();
+        war.clan.members.forEach((m) => {
+            (m.attacks || []).forEach((a) => attackedTags.add(a.defenderTag));
+        });
+    
+        const getMirrorTag = (member) => {
+            const mirrorOpponent = war.opponent.members.find(
+                (opponentMember) => opponentMember.mapPosition === member.mapPosition
+            );
+            return mirrorOpponent ? mirrorOpponent.tag : null;
+        };
+    
+        const lines = [
+            "⚔️😡 *SANCIONES DE GUERRA* 😡⚔️",
+            "~~~~~~~~~~~~~~~~~~~~~~~~",
+            "",
+        ];
+    
+        if (isPerfectWar) {
+            lines.push("🎉 *¡GUERRA PERFECTA! No hay sanciones.*");
+        } else {
+            const faultLines = [];
+    
+            war.clan.members.forEach((member) => {
+                const faults = [];
+    
+                if (!member.attacks || member.attacks.length === 0) {
+                    faults.push("*No realizó ningún ataque (EXPULSIÓN)*");
+                } else {
+                    const mirrorTag = getMirrorTag(member);
+                    if (mirrorTag && !attackedTags.has(mirrorTag)) {
+                        faults.push("*No atacó a su espejo en el 1er ataque (1 GUERRA DE SANCIÓN)*");
+                    }
+                    if (member.attacks.length < 2) {
+                        faults.push("*No realizó su 2do ataque (1 GUERRA DE SANCIÓN)*");
+                    }
+                }
+    
+                if (faults.length > 0) {
+                    faultLines.push(`🔴 ${member.name} ➡️ ${faults.join(" / ")}`);
+                }
+            });
+    
+            if (faultLines.length === 0) {
+                lines.push("✅ *No hay jugadores sancionados.*");
+            } else {
+                lines.push(...faultLines);
+            }
+        }
+    
+        lines.push("", "~~~~~~~~~~~~~~~~~~~~~~~~", "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑");
+    
+        openModal("Lista de sanciones", lines.join("\n"));
+    };
+
+    const handleWarClosure = () => {
+        let result;
+        if (war.clan.stars > war.opponent.stars) {
+            result = "ganado";
+        } else if (war.clan.stars < war.opponent.stars) {
+            result = "perdido";
+        } else if (war.clan.destructionPercentage > war.opponent.destructionPercentage) {
+            result = "ganado";
+        } else if (war.clan.destructionPercentage < war.opponent.destructionPercentage) {
+            result = "perdido";
+        } else {
+            result = "empatado";
+        }
+
+        const resultLine = {
+            ganado: "*¡HEMOS GANADO LA GUERRA!* 💪🏼🔥",
+            perdido: "*¡HEMOS PERDIDO LA GUERRA!* ☠️😪",
+            empatado: "*¡HEMOS EMPATADO LA GUERRA!* 🤝⚡",
+        }[result];
+
+        const content = [
+            "⚔️ *GUERRA DE CLANES* ⚔️",
+            "😱💥 *FINALIZADA* 💥😱",
+            "",
+            resultLine,
+            "",
+            "*~~~~~~~~~~~~~~~~~~~~~~~~*",
+            "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑",
+        ].join("\n");
+
+        openModal("Cierre de guerra", content);
+    };
     
     return (
         <div className="war-container">
@@ -134,6 +319,44 @@ function CurrentWar() {
                         </tbody>
                     </table>
                 </div>
+
+                <div className="war-actions">
+
+                        <button className="war-action-button war-action-button--search" onClick={handleSearchWar}>
+                            Buscar guerra
+                        </button>
+
+                        <button className="war-action-button war-action-button--registration" onClick={handleRegistrationMessage}>
+                            Abrir registro
+                        </button>
+
+                    <div className="reminder-wrapper">
+                        
+                        <button
+                            className="war-action-button war-action-button--reminder"
+                            onClick={() => setShowReminderMenu((prev) => !prev)}
+                        >
+                            Enviar recordatorio
+                        </button>
+
+                        {showReminderMenu && (
+                            <div className="reminder-submenu">
+                                <button className="reminder-submenu-item" onClick={() => handleReminder(1)}>1er ataque</button>
+                                <button className="reminder-submenu-item" onClick={() => handleReminder(2)}>2do ataque</button>
+                            </div>
+                        )}
+                    </div>
+
+                    <button className="war-action-button war-action-button--sanctions" onClick={handleSanctions}>
+                        Generar lista de sanciones
+                    </button>
+
+                    <button className="war-action-button war-action-button--closure" onClick={handleWarClosure}>
+                        Generar cierre de guerra
+                    </button>
+
+                </div>
+
 
                 <div className="participants">
                 {war.clan.members && war.clan.members
@@ -214,13 +437,23 @@ function CurrentWar() {
                 
             </div>
 
-            {/*<div className="times">
-                <p>Preparation started at: {preparationStartTimeString} ({formatTimeRemaining(preparationStartTime)})</p>
-                <p>War starts at: {startTimeString} ({formatTimeRemaining(startTime)})</p>
-                <p>War ends at: {endTimeString} ({formatTimeRemaining(endTime)})</p>
-            </div>
+            {modal.open && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h3 className="modal-title">{modal.title}</h3>
+                            <button className="modal-close-button" onClick={closeModal}>✕</button>
+                        </div>
+                        <pre className="modal-content">{modal.content}</pre>
+                        <div className="modal-footer">
+                            <button className="war-action-button" onClick={() => copyToClipboard(modal.content)}>
+                                {copied ? "¡Copiado!" : "Copiar mensaje"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
-                <p>Team Size: {war.teamSize}</p>*/}
         </div>
     );
 }
