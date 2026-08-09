@@ -53,6 +53,13 @@ export async function getLeagueSeasonData() {
   return data;
 }
 
+export async function getWarLeagueWar(WARTAG) {
+  const cleanTag = WARTAG.startsWith('#') ? WARTAG.slice(1) : WARTAG;
+  const data = await getJSON(`/league/war/${encodeURIComponent(cleanTag)}`);
+  console.log('LEAGUE WAR:', data);
+  return data;
+}
+
 export async function getLocationClanRankingArg() {
   return getJSON('/rankings/clans/ar');
 }

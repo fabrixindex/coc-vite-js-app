@@ -36,6 +36,17 @@ function CurrentWar() {
         return <Loader />; 
     }
 
+    if (!war || war.state === "notInWar" || !war.preparationStartTime) {
+        return (
+            <div className="war-container">
+                <h1 className="current-war-title">Estadisticas de Guerra Actual</h1>
+                <div className="no-war-message">
+                    <p className="no-war-message-text">⚔️ El clan no se encuentra actualmente en guerra.</p>
+                </div>
+            </div>
+        );
+    }
+
     const getTownHallImage = (level) => {
         if (level === 16) {
             return "../public/th16.png";
@@ -91,13 +102,19 @@ function CurrentWar() {
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    const attackedMirror = (member) => {
-        const firstAttack = member.attacks && member.attacks[0];
-        if (!firstAttack) return false;
-        const opponentMapPosition = war.opponent.members.find(
-            (opponentMember) => opponentMember.tag === firstAttack.defenderTag
-        )?.mapPosition;
-        return opponentMapPosition === member.mapPosition;
+    const getMirrorTag = (member) => {
+        const mirrorOpponent = war.opponent.members.find(
+            (opponentMember) => opponentMember.mapPosition === member.mapPosition
+        );
+        return mirrorOpponent ? mirrorOpponent.tag : null;
+    };
+
+    const getAllAttackedDefenderTags = () => {
+        const tags = new Set();
+        war.clan.members.forEach((m) => {
+            (m.attacks || []).forEach((a) => tags.add(a.defenderTag));
+        });
+        return tags;
     };
 
     const copyToClipboard = (text) => {
@@ -190,13 +207,6 @@ function CurrentWar() {
             (m.attacks || []).forEach((a) => attackedTags.add(a.defenderTag));
         });
     
-        const getMirrorTag = (member) => {
-            const mirrorOpponent = war.opponent.members.find(
-                (opponentMember) => opponentMember.mapPosition === member.mapPosition
-            );
-            return mirrorOpponent ? mirrorOpponent.tag : null;
-        };
-    
         const lines = [
             "⚔️😡 *SANCIONES DE GUERRA* 😡⚔️",
             "~~~~~~~~~~~~~~~~~~~~~~~~",
@@ -204,32 +214,33 @@ function CurrentWar() {
         ];
     
         if (isPerfectWar) {
-            lines.push("🎉 *¡GUERRA PERFECTA! No hay sanciones.*");
+            lines.push("🎉 ¡GUERRA PERFECTA! No hay sanciones.");
         } else {
+            const attackedTags = getAllAttackedDefenderTags();
             const faultLines = [];
-    
+
             war.clan.members.forEach((member) => {
                 const faults = [];
-    
+
                 if (!member.attacks || member.attacks.length === 0) {
-                    faults.push("*No realizó ningún ataque (EXPULSIÓN)*");
+                    faults.push("No realizó ningún ataque (EXPULSIÓN)");
                 } else {
                     const mirrorTag = getMirrorTag(member);
                     if (mirrorTag && !attackedTags.has(mirrorTag)) {
-                        faults.push("*No atacó a su espejo en el 1er ataque (1 GUERRA DE SANCIÓN)*");
+                        faults.push("No atacó a su espejo en el 1er ataque (1 GUERRA DE SANCIÓN)");
                     }
                     if (member.attacks.length < 2) {
-                        faults.push("*No realizó su 2do ataque (1 GUERRA DE SANCIÓN)*");
+                        faults.push("No realizó su 2do ataque (1 GUERRA DE SANCIÓN)");
                     }
                 }
-    
+
                 if (faults.length > 0) {
                     faultLines.push(`🔴 ${member.name} ➡️ ${faults.join(" / ")}`);
                 }
             });
-    
+
             if (faultLines.length === 0) {
-                lines.push("✅ *No hay jugadores sancionados.*");
+                lines.push("✅ No hay jugadores sancionados.");
             } else {
                 lines.push(...faultLines);
             }

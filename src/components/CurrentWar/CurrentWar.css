@@ -524,6 +524,32 @@
 }
 
 /* ==========================================================================
+   Sin guerra activa
+   ========================================================================== */
+ 
+   .no-war-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #1a232c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 40px 20px;
+    margin: 24px auto;
+    max-width: 500px;
+}
+ 
+.no-war-message p.no-war-message-text {
+    color: #f2f5f8;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+    margin: 0
+}
+
+/* ==========================================================================
    Responsive (mobile)
    ========================================================================== */
 
