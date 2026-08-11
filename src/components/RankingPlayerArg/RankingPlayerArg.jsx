@@ -12,7 +12,6 @@ function RankingPlayerArg() {
         async function fetchRankingData() {
             try {
                 const response = await getPlayersRankingArg();
-                console.log("RESPONSE:", response)
                 setInfo(response.items);
             } catch (error) {
                 console.error('Error fetching CLAN:', error);
