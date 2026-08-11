@@ -40,7 +40,7 @@ function Navbar() {
           
           <Link to="/" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Home </li> </Link>
           
-          <Link to="/losMagiosClan" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Clan Los Magios </li> </Link>
+          <Link to="/losMagiosClan" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Nuestro Clan </li> </Link>
 
           <Link to="/currentWar" className='nav-item'> <li className='nav-bar-li' onClick={handleLinkClick}> Estadisticas de la Guerra actual </li> </Link>
           
