@@ -1,146 +1,211 @@
-.rules-container {
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+.capital-page {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: #ffffff;
-    border: solid 1px gold;
-    margin-top: 2rem;
+    padding: 24px 16px 48px;
+    color: #f2f5f8;
 }
 
-.rule-title {
-    color: gold;
-    border-bottom: solid 1px gold;
-    padding-bottom: 5px;
-}
-
-.rule-item {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.rule-item span {
-    margin-right: 10px;
-    font-size: 1.5em;
-}
-
-@media screen and (max-width: 768px) {
-    .rules-container {
-        padding: 15px;
-        max-width: 300px;
-    }
-
-    .rule-p {
-        font-size: 13px;
-    }
-
-    .rule-item span {
-        margin-right: 0;
-        font-size: 0.9rem; 
-    }
-
-    .rule-title {
-        font-size: 1.5em; 
-    }
-}
+/* ==========================================================================
+   Encabezado principal
+   ========================================================================== */
 
 .capital-raid-list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-.capital-raid-list-dates {
-    text-align: start;
-    margin-left: 20px;
-    margin-top: 20px;
-    color: white;
 }
 
 .capital-raid-list-header {
-    color: white;
+    margin: 0 0 6px;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 10px;
 }
 
-.capital-raid-list {
-    color: white;
+.capital-raid-list-header-text {
+    display: inline-block;
+    position: relative;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #f0c94a, #e0a721, #f0c94a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-bottom: 12px;
 }
+
+.capital-raid-list-header-text::before {
+    content: "☁️";
+    margin-right: 10px;
+    -webkit-text-fill-color: initial;
+}
+
+.capital-raid-list-header-text::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, transparent, #e0a721, transparent);
+}
+
+@media (max-width: 600px) {
+    .capital-raid-list-header-text {
+        font-size: 24px;
+    }
+}
+
+/* ==========================================================================
+   Fechas y resumen
+   ========================================================================== */
+
+.capital-raid-dates {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 14px 0;
+}
+
+.capital-raid-date-pill {
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: #d7dee4;
+}
+
+.capital-raid-summary {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.capital-raid-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 12px 20px;
+    min-width: 110px;
+}
+
+.capital-raid-stat-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #e0a721;
+    font-variant-numeric: tabular-nums;
+}
+
+.capital-raid-stat-label {
+    font-size: 11px;
+    color: #8a97a3;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.capital-raid-list-subtitle {
+    color: #d7dee4;
+    font-size: 14px;
+    margin: 0 0 14px;
+}
+
+/* ==========================================================================
+   Lista
+   ========================================================================== */
 
 .capital-raid-list-number {
-    color: white;
-    list-style: decimal;
-    margin-left: 20px;
-}
-
-@media only screen and (max-width: 600px) {
-    .capital-raid-list-header {
-        font-size: 1.5rem;
-    }
-
-    .capital-raid-list-dates {
-        font-size: 1rem;
-    }
-
-    .capital-raid-list-p3 {
-        font-size: 1.1rem;
-    }
-
-}
-
-.btn-copy-current-capital-raid {
-    background-color: rgb(58, 168, 58);
-    color: white;
-    border: none;
-    padding: 16px 26px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease, color 0.3s ease; 
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
-}
-
-.btn-copy-current-capital-raid:hover {
-    background-color: rgb(75, 170, 75);
-    box-shadow: 0 6px 8px rgba(255, 254, 254, 0.4); 
-    color: rgba(255, 255, 255, 0.9); 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .button-container {
     text-align: center;
+    margin-top: 8px;
 }
 
 .btn-show-more,
-.btn-show-less {
-    background-color: rgb(58, 168, 58);
-    color: white;
+.btn-show-less,
+.btn-copy-current-capital-raid {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 10px; 
+    color: white;
+    margin: 6px;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .btn-show-more:hover,
-.btn-show-less:hover {
-    background-color: rgb(75, 105, 170);
+.btn-show-less:hover,
+.btn-copy-current-capital-raid:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
+}
+
+.btn-show-more:focus-visible,
+.btn-show-less:focus-visible,
+.btn-copy-current-capital-raid:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
 .btn-show-more {
-    background-color: rgb(49, 153, 172);
+    background: linear-gradient(135deg, #2f80c9, #1b4f7a);
 }
 
 .btn-show-less {
-    background-color: rgb(19, 65, 83);
+    background: linear-gradient(135deg, #4a5a68, #2c3946);
+}
+
+.btn-copy-current-capital-raid {
+    background: linear-gradient(135deg, #2f9e5e, #1e6b3f);
+    margin-top: 14px;
+    padding: 14px 26px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-show-more,
+    .btn-show-less,
+    .btn-copy-current-capital-raid {
+        transition: none;
+    }
+
+    .btn-show-more:hover,
+    .btn-show-less:hover,
+    .btn-copy-current-capital-raid:hover {
+        transform: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .capital-raid-summary {
+        gap: 10px;
+    }
+
+    .capital-raid-stat {
+        min-width: 90px;
+        padding: 10px 14px;
+    }
 }

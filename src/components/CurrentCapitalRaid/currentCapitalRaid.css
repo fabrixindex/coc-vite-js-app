@@ -1,28 +1,118 @@
-.capital-raid-list-item {
-    color: white;
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+.capital-raid-row {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    gap: 14px;
+    background: #1a232c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 16px;
+    margin-bottom: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.capital-raid-list-item p {
-    margin: 2px;
-    font-size: 1.2rem;
+.capital-raid-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
-@media only screen and (max-width: 600px) {
-    .capital-raid-list-item p {
-        font-size: 1.1rem; 
+/* Verde: 6/6 completado · Amarillo: ataques parciales · Rojo: no atacó */
+.capital-raid-row--high {
+    border-left: 4px solid #2f9e5e;
+}
+
+.capital-raid-row--mid {
+    border-left: 4px solid #e0a721;
+}
+
+.capital-raid-row--low {
+    border-left: 4px solid #d9463b;
+}
+
+.capital-raid-rank {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    color: #8a97a3;
+    width: 22px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.capital-medal {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+}
+
+.capital-medal-track {
+    fill: none;
+    stroke: #0d1218;
+    stroke-width: 5;
+}
+
+.capital-medal-fill {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.capital-raid-row--high .capital-medal-fill {
+    stroke: #4bd188;
+}
+
+.capital-raid-row--mid .capital-medal-fill {
+    stroke: #e0a721;
+}
+
+.capital-raid-row--low .capital-medal-fill {
+    stroke: #d9463b;
+}
+
+.capital-medal-text {
+    fill: #f2f5f8;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.capital-raid-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+.capital-raid-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2f5f8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.capital-raid-status {
+    font-size: 12px;
+    color: #8a97a3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .capital-raid-row,
+    .capital-medal-fill {
+        transition: none;
     }
 }
 
-.green-circle {
-    color: green;
-    margin-right: 5px;
-}
+@media only screen and (max-width: 600px) {
+    .capital-raid-name {
+        font-size: 15px;
+    }
 
-.red-circle {
-    color: red;
-    margin-right: 5px;
+    .capital-medal {
+        width: 38px;
+        height: 38px;
+    }
 }
