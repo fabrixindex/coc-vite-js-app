@@ -1,159 +1,143 @@
-.ranking-player-table-mx {
-    max-width: 100%;
-    width: 50%; 
-    margin: 0 auto; 
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    margin-top: 2rem;
-    font-size: 20px;
-    cursor: pointer;
-}
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
 
-.player-table-mx {
-    max-width: 100%;
-    width: auto;
-    border-collapse: collapse;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-right: 2rem;
-    box-shadow: 4px 4px 25px rgba(146, 146, 146, 0.966);
-    margin-bottom: 1rem;
-}
-
-.table-title-mx {
-    background-color: #a82727;
-    color: white;
-    padding: 12px 0;
+.ranking-loading {
+    color: #8a97a3;
     text-align: center;
-    border: solid 1px white;
-    font-size: 25px;
+    padding: 24px 0;
+    font-size: 14px;
 }
 
-.column-title-mx {
-    background-color: #a82727;
-    padding: 8px;
-    text-align: center;
-    border: solid 1px white;
-    font-size: 25px;
-}
-
-.table-cell {
-    white-space: nowrap;
-    padding: 10px;
-    color: white;
-    border: solid 1px white;
-    text-align: center;
-}
-
-.data-row:nth-child(odd) {
-    background-color: transparent;
-}
-
-.data-row:nth-child(even) {
-    background-color: #136b26;
-}
-
-.data-row:hover {
-    background-color: #76aa61;
-}
-
-.player-name-mx {
-    margin-left: 10px;
-    word-break: break-all;
-}
-
-.table-rank-name-league-mx, .table-rank-trophy-mx {
+.player-ranking-list-mx {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.player-ranking-row-mx {
+    display: grid;
+    grid-template-columns: 40px 40px 1fr auto;
     align-items: center;
-    margin-left: 10px;
-}
-
-.trophy-icon-mx {
-    max-width: 45px;
-    max-height: 45px;
-    border-radius: 50%;  
-}
-
-.trophy-count-mx {
-    margin-left: 10px;
-    padding: 3px 5px 3px 5px;
-    background-color: rgb(143, 94, 3);
-    border-radius: 15px;
-    color: white;
-}
-
-.show-more-btn-py-mx {
-    background-color: rgb(138, 27, 27);
-    color: white;
-    border: none;
-    padding: 12px 20px;
+    gap: 12px;
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid #ce1126;
     border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease; 
-    margin-top: 1rem;
+    padding: 10px 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.show-less-btn-py-mx {
-    background-color: rgb(107, 50, 46);
-    color: white;
+.player-ranking-row-mx:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.player-ranking-rank-mx {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8a97a3;
+    text-align: center;
+}
+
+.player-ranking-league-icon-mx {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.player-ranking-name-mx {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2f5f8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.player-ranking-trophies-mx {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 99, 65, 0.2);
+    color: #4bd188;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.player-ranking-trophy-icon-mx {
+    width: 16px;
+    height: 16px;
+}
+
+.ranking-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.ranking-btn {
     border: none;
-    padding: 12px 20px;
     border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 13px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    transition: box-shadow 0.3s ease; 
-    margin-top: 1rem;
+    color: white;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.show-more-btn-py-mx:hover {
-    background-color: rgb(139, 43, 43);
-    box-shadow: 0 6px 10px rgba(255, 254, 254, 0.2);
+.ranking-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
 }
 
-.show-less-btn-py-mx:hover {
-    background-color: rgb(110, 62, 58);
-    box-shadow: 0 6px 10px rgba(252, 251, 251, 0.2);
+.ranking-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
-@media only screen and (max-width: 768px) {
-    .ranking-player-table-mx {
-        width: 100%; 
-        font-size: 16px; 
-        margin-left: 0.5rem;
+.ranking-btn--more-mx {
+    background: linear-gradient(135deg, #ce1126, #7a0f1c);
+}
+
+.ranking-btn--less-mx {
+    background: linear-gradient(135deg, #4a5a68, #2c3946);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .player-ranking-row-mx,
+    .ranking-btn {
+        transition: none;
     }
 
-    .player-table-mx {
-        margin-right: 1rem; 
+    .player-ranking-row-mx:hover,
+    .ranking-btn:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .player-ranking-row-mx {
+        grid-template-columns: 30px 34px 1fr auto;
+        gap: 8px;
+        padding: 8px 10px;
     }
 
-    .table-title-mx, .column-title-mx {
-        font-size: 20px; 
+    .player-ranking-name-mx {
+        font-size: 15px;
     }
 
-    .table-rank-name-league-mx, .table-rank-trophy-mx {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-left: 0;
-    }
-
-    .table-cell {
-        padding: 8px; /
-    }
-
-    .trophy-icon-mx {
-        max-width: 50px; 
-        max-height: 50px;
-    }
-
-    .show-more-btn-py-mx, .show-less-btn-py-mx {
-        padding: 10px 15px; 
-        font-size: 14px; 
+    .player-ranking-trophies-mx {
+        font-size: 12px;
+        padding: 4px 10px;
     }
 }

@@ -1,197 +1,153 @@
-.top-clanes-argentina {
-    text-align: center; 
-    border: none; 
-    padding: 10px 0; 
-    font-size: 24px; 
-    font-weight: bold; 
-}
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
 
-.clan-ranking-table {
-    width: 40%;
-    margin: 0 auto; 
-    margin-bottom: 1rem;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    margin-top: 3rem;
-    border-radius: 10px; 
-    cursor: pointer;
-    border-collapse: collapse;
-    box-shadow: 4px 4px 25px rgba(146, 146, 146, 0.966); 
-    margin-right: 3rem;
-}
-
-.clan-ranking-table th,
-.clan-ranking-table td {
-    padding: 10px; 
+.ranking-loading {
+    color: #8a97a3;
     text-align: center;
-    border-radius: 10px;
+    padding: 24px 0;
+    font-size: 14px;
 }
 
-.clan-ranking-table td {
-    border-radius: 10px;
+.clan-ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 640px;
+    margin: 0 auto;
 }
 
-.clan-ranking-table th {
-    border: none; 
-    padding-bottom: 10px; 
+.clan-ranking-row {
+    display: grid;
+    grid-template-columns: 40px 40px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid #75aadb;
+    border-radius: 10px;
+    padding: 10px 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clan-ranking-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.clan-ranking-row--own {
+    border-left: 4px solid #e0a721;
+    background: linear-gradient(135deg, rgba(224, 167, 33, 0.18), #1c2733);
+    box-shadow: 0 0 0 1px rgba(224, 167, 33, 0.35);
+}
+
+.clan-ranking-rank {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8a97a3;
     text-align: center;
 }
 
-.clan-ranking-table th {
-    background-color: #3e0857; 
-    color: white; 
-    border: none;
+.clan-ranking-row--own .clan-ranking-rank {
+    color: #e0a721;
 }
 
-.clan-ranking-table tbody tr:nth-child(even) {
-    background-color: #2b2a2a; 
-}
-
-.clan-ranking-table tbody tr:hover {
-    background-color: #7a7979; 
-}
-
-.clan-ranking-table img {
-    max-width: 60px;
-    max-height: 60px;
+.clan-ranking-badge {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.trophy-img {
-    max-width: 50px;
-    max-height: 50px;
-    border-radius: 50%;   
+.clan-ranking-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2f5f8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.table-rank-arg-conainer-2 {
+.clan-ranking-points {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    gap: 6px;
+    background: rgba(224, 167, 33, 0.15);
+    color: #f0c94a;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
-.table-rank-arg-conainer-2 img {
-    margin-left: 2rem;
-    margin-right: 10px; 
-    align-self: center; 
+.clan-ranking-trophy {
+    width: 16px;
+    height: 16px;
 }
 
-.table-rank-arg-conainer-3{
+.ranking-buttons {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
 }
 
-.table-rank-arg-conainer-3-points {
-    padding: 3px 5px 3px 5px;
-    background-color: rgb(143, 94, 3);
-    border-radius: 15px;
-    color: yellow;
-}
-
-#golden-background {
-    background-color: rgb(221, 193, 32);
-    font-weight: bolder;
-}
-
-#golden-background:hover {
-    background-color: rgb(226, 203, 71);
-}
-
-.btn-show-more-less-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 15px;
-    padding-bottom: 1rem;
-}
-
-.show-more-btn {
-    background-color: rgb(84, 17, 116);
-    color: white;
+.ranking-btn {
     border: none;
-    padding: 12px 20px;
     border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 13px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease; 
-    margin-top: 1rem;
-}
-
-.show-less-btn {
-    background-color: rgb(73, 47, 88);
     color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease; 
-    margin-top: 1rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.show-more-btn:hover {
-    background-color: rgb(90, 31, 117);
-    box-shadow: 0 6px 10px rgba(255, 254, 254, 0.2);
+.ranking-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
 }
 
-.show-less-btn:hover {
-    background-color: rgb(77, 54, 90);
-    box-shadow: 0 6px 10px rgba(252, 251, 251, 0.2);
+.ranking-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
-@media screen and (max-width: 768px) {
-    .top-clanes-argentina {
-        font-size: 20px; 
+.ranking-btn--more-clan {
+    background: linear-gradient(135deg, #75aadb, #3a6b96);
+}
+
+.ranking-btn--less-clan {
+    background: linear-gradient(135deg, #4a5a68, #2c3946);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .clan-ranking-row,
+    .ranking-btn {
+        transition: none;
     }
 
-    .clan-ranking-table {
-        width: 100%; 
-        margin-right: 0; 
-    }
-
-    .table-rank-arg-conainer-2 img {
-        margin-left: 1rem; 
-    }
-
-    .btn-show-more-less-container {
-        flex-direction: column; 
-        gap: 10px;
-        align-items: center; 
-    }
-
-    .show-more-btn, .show-less-btn {
-        padding: 10px 15px; 
-        font-size: 14px; 
-    }
-
-    .table-rank-arg-conainer-2, .table-rank-arg-conainer-3 {
-        flex-direction: column; 
-        align-items: center; 
-        text-align: center; 
-    }
-
-    .table-rank-arg-conainer-2 img {
-        margin-left: 0; 
-        margin-bottom: 0.5rem;
+    .clan-ranking-row:hover,
+    .ranking-btn:hover {
+        transform: none;
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .table-rank-arg-conainer-2,
-    .table-rank-arg-conainer-3 {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+@media (max-width: 600px) {
+    .clan-ranking-row {
+        grid-template-columns: 30px 34px 1fr auto;
+        gap: 8px;
+        padding: 8px 10px;
     }
 
-    .table-rank-arg-conainer-2 img {
-        margin-left: 0;
-        margin-bottom: 0.5rem;
+    .clan-ranking-name {
+        font-size: 15px;
+    }
+
+    .clan-ranking-points {
+        font-size: 12px;
+        padding: 4px 10px;
     }
 }

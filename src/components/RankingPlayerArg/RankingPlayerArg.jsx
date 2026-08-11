@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { getPlayersRankingArg } from "../../Services/ConnectAPI.js";
 import "./RankingPlayerArg.css";
 
+const MEDALS = ["🥇", "🥈", "🥉"];
+
 function RankingPlayerArg() {
     const [ranking, setInfo] = useState(null);
     const [visiblePlayers, setVisiblePlayers] = useState(5);
@@ -10,6 +12,7 @@ function RankingPlayerArg() {
         async function fetchRankingData() {
             try {
                 const response = await getPlayersRankingArg();
+                console.log("RESPONSE:", response)
                 setInfo(response.items);
             } catch (error) {
                 console.error('Error fetching CLAN:', error);
@@ -20,66 +23,39 @@ function RankingPlayerArg() {
     }, []);
 
     if (!ranking) {
-        return <div>Loading...</div>;
+        return <div className="ranking-loading">Cargando ranking...</div>;
     }
 
-    const handleShowMore = () => {
-        setVisiblePlayers((prev) => prev + 5);
-    };
-
-    const handleShowLess = () => {
-        setVisiblePlayers((prev) => prev - 5);
-    };
+    const handleShowMore = () => setVisiblePlayers((prev) => prev + 5);
+    const handleShowLess = () => setVisiblePlayers((prev) => Math.max(5, prev - 5));
 
     return (
-        <div className="ranking-player-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th colSpan="3">Ranking Mejores Jugadores de Argentina</th>
-                    </tr>
-                    <tr>
-                        <th>N°</th>
-                        <th>Jugador</th>
-                        <th>Trofeos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ranking.slice(0, visiblePlayers).map((player, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}.</td>
+        <div className="player-ranking-list">
+            {ranking.slice(0, visiblePlayers).map((player, index) => (
+                <div key={player.tag} className="player-ranking-row">
+                    <span className="player-ranking-rank">{MEDALS[index] || `${index + 1}°`}</span>
 
-                            <td>
-                                <div className="table-rank-name-league">
-                                    <img 
-                                        src={
-                                            player.leagueTier?.iconUrls?.large || 
-                                            player.league?.iconUrls?.medium
-                                        } 
-                                        alt="League Icon" 
-                                        className="league-icon" 
-                                    />
-                                    <p className="player-name-p">{player.name}</p>
-                                </div>
-                            </td>
+                    <img
+                        src={player.leagueTier?.iconUrls?.small || player.league?.iconUrls?.medium}
+                        alt="Liga"
+                        className="player-ranking-league-icon"
+                    />
 
-                            <td>
-                                <div className="table-rank-trophy">
-                                    <img src="/trophy.png" alt="league" className="trophy-img" />
-                                    <p className="table-rank-points">{player.trophies}</p>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                    <span className="player-ranking-name">{player.name}</span>
 
-            <div className="btn-show-more-less-container">
+                    <span className="player-ranking-trophies">
+                        <img src="/trophy.png" alt="trofeo" className="player-ranking-trophy-icon" />
+                        {player.trophies.toLocaleString()}
+                    </span>
+                </div>
+            ))}
+
+            <div className="ranking-buttons">
                 {ranking.length > visiblePlayers && (
-                    <button onClick={handleShowMore} className="show-more-btn-py-arg">Ver más</button>
+                    <button onClick={handleShowMore} className="ranking-btn ranking-btn--more-arg">Ver más</button>
                 )}
                 {visiblePlayers > 5 && (
-                    <button onClick={handleShowLess} className="show-less-btn-py-arg">Ver menos</button>
+                    <button onClick={handleShowLess} className="ranking-btn ranking-btn--less-arg">Ver menos</button>
                 )}
             </div>
         </div>

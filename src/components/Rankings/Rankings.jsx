@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import RankingClanArg from "../RankingClanArg/RankingClanArg.jsx";
 import RankingPlayerArg from "../RankingPlayerArg/RankingPlayerArg.jsx";
 import RankingPlayerMex from "../RankingPlayerMx/RankingPlayerMx.jsx";
-import Loader from "../Loader/Loader.jsx"; 
+import Loader from "../Loader/Loader.jsx";
 import "./Rankings.css";
 
 function Rankings() {
@@ -10,45 +10,49 @@ function Rankings() {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setLoading(false); 
-        }, 2000); 
+            setLoading(false);
+        }, 2000);
 
-        return () => clearTimeout(timeout); 
+        return () => clearTimeout(timeout);
     }, []);
 
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
-        <>
-            {loading ? ( 
-                <Loader />
-            ) : (
-                <>
-                    <div className="ranking-container-1">
-                        <div>
-                            <h1 className="clan-arg-container-text">RANKING DE CLANES ARGENTINA</h1>
-                        </div>
+        <div className="rankings-page">
 
-                        <RankingClanArg />
-                    </div>
+            <header className="rankings-hero">
+                <h1 className="rankings-hero-title">Rankings</h1>
+                <p className="rankings-hero-subtitle">Los mejores clanes y jugadores de la región</p>
+            </header>
 
-                    <div className="ranking-container-2">
-                        <RankingPlayerArg />
+            <section className="ranking-section ranking-section--arg">
+                <div className="ranking-section-header">
+                    <span className="ranking-section-flag">☀️</span>
+                    <h2 className="ranking-section-title">Ranking de Clanes — Argentina</h2>
+                </div>
+                <RankingClanArg />
+            </section>
 
-                        <div>
-                            <h1 className="arg-player-container-text">RANKING <br /> DE PLAYERS ARGENTINA</h1>
-                        </div>
-                    </div>
+            <section className="ranking-section ranking-section--arg">
+                <div className="ranking-section-header">
+                    <span className="ranking-section-flag">☀️</span>
+                    <h2 className="ranking-section-title">Ranking de Jugadores — Argentina</h2>
+                </div>
+                <RankingPlayerArg />
+            </section>
 
-                    <div className="ranking-container-3">
+            <section className="ranking-section ranking-section--mex">
+                <div className="ranking-section-header">
+                    <span className="ranking-section-flag">🦅</span>
+                    <h2 className="ranking-section-title">Ranking de Jugadores — México</h2>
+                </div>
+                <RankingPlayerMex />
+            </section>
 
-                        <div>
-                            <h1 className="mex-player-container-text">RANKING <br /> DE PLAYERS MEXICO</h1>
-                        </div>
-
-                        <RankingPlayerMex />
-                    </div>
-                </>
-            )}
-        </>
+        </div>
     );
 }
 

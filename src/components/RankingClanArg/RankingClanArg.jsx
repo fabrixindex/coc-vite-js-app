@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { getLocationClanRankingArg } from "../../Services/ConnectAPI.js";
 import "./RankingClanArg.css";
 
+const MEDALS = ["🥇", "🥈", "🥉"];
+
 function RankingClanArg() {
     const [ranking, setInfo] = useState(null);
-    const [visibleClans, setVisibleClans] = useState(5); 
+    const [visibleClans, setVisibleClans] = useState(5);
 
     useEffect(() => {
         async function fetchRankingData() {
@@ -20,58 +22,42 @@ function RankingClanArg() {
     }, []);
 
     if (!ranking) {
-        return <div>Loading...</div>;
+        return <div className="ranking-loading">Cargando ranking...</div>;
     }
 
-    const handleShowMore = () => {
-        setVisibleClans((prev) => prev + 5);
-    };
-
-    const handleShowLess = () => {
-        setVisibleClans((prev) => prev - 5);
-    };
+    const handleShowMore = () => setVisibleClans((prev) => prev + 5);
+    const handleShowLess = () => setVisibleClans((prev) => Math.max(5, prev - 5));
 
     return (
-        <div className="full-container">
-            <table className="clan-ranking-table">
-            <thead>
-                    <tr style={{borderBottom:"2px solid white"}}>
-                        <th colSpan="3" className="top-clanes-argentina">TOP CLANES ARGENTINA</th>
-                    </tr>
+        <div className="clan-ranking-list">
+            {ranking.slice(0, visibleClans).map((clan, index) => {
+                const isOwnClan = clan.name === "Los Magios";
 
-                    <tr style={{borderBottom:"2px solid white"}}>
-                        <th>N°</th>
-                        <th>Clan</th>
-                        <th>Puntos</th>
-                    </tr>
-            </thead>
-            <tbody>
-                {ranking.slice(0, visibleClans).map((clan, index) => (
-                    <tr key={index} id={clan.name === "Los Magios" ? "golden-background" : ""}>
-                        <td>{index + 1}.</td>
-                        <td>
-                            <div className="table-rank-arg-conainer-2">
-                                <img src={clan.badgeUrls.medium} alt="Clan Badge" />
-                                <p>{clan.name}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div className="table-rank-arg-conainer-3">
-                                <p className="table-rank-arg-conainer-3-points">{clan.clanPoints}</p>
-                                <img src="/trophy.png" alt="league" className="trophy-img" />
-                            </div>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-            </table>
+                return (
+                    <div
+                        key={clan.tag}
+                        className={`clan-ranking-row${isOwnClan ? " clan-ranking-row--own" : ""}`}
+                    >
+                        <span className="clan-ranking-rank">{MEDALS[index] || `${index + 1}°`}</span>
 
-            <div className="btn-show-more-less-container">
+                        <img src={clan.badgeUrls.medium} alt="Escudo del clan" className="clan-ranking-badge" />
+
+                        <span className="clan-ranking-name">{clan.name}</span>
+
+                        <span className="clan-ranking-points">
+                            <img src="/trophy.png" alt="trofeo" className="clan-ranking-trophy" />
+                            {clan.clanPoints.toLocaleString()}
+                        </span>
+                    </div>
+                );
+            })}
+
+            <div className="ranking-buttons">
                 {ranking.length > visibleClans && (
-                    <button onClick={handleShowMore} className="show-more-btn">Ver más</button>
+                    <button onClick={handleShowMore} className="ranking-btn ranking-btn--more-clan">Ver más</button>
                 )}
                 {visibleClans > 5 && (
-                    <button onClick={handleShowLess} className="show-less-btn">Ver menos</button>
+                    <button onClick={handleShowLess} className="ranking-btn ranking-btn--less-clan">Ver menos</button>
                 )}
             </div>
         </div>

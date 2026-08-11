@@ -1,62 +1,98 @@
-.ranking-container-1, .ranking-container-2, .ranking-container-3 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 85%;
-    margin: 0 auto; 
-    margin-top: 2rem;
-    border-radius: 15px;
-    background-image: linear-gradient(to bottom, rgb(43, 9, 43), rgb(7, 7, 7)); 
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+.rankings-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 16px 56px;
+    color: #f2f5f8;
 }
 
-.clan-arg-container-text, .arg-player-container-text, .mex-player-container-text {
-    color: white;
-    font-size: 65px;
+.rankings-hero {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.rankings-hero-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 42px;
     font-weight: 700;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: left;
-    margin-left: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    background: linear-gradient(135deg, #f2f5f8, #b8c4cf);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-.ranking-container-2 {
-    margin-top: 3rem;
-    background-image: linear-gradient(to bottom, rgb(26, 24, 87), rgb(7, 7, 7));
+.rankings-hero-subtitle {
+    color: #8a97a3;
+    font-size: 14px;
+    margin: 0;
 }
 
-.arg-player-container-text {
-    margin-right: 2rem;
-    text-align: right;
+.ranking-section {
+    background: #161f28;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 28px 20px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
 }
 
-.ranking-container-3 {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    background-image: linear-gradient(to bottom, rgb(109, 19, 19), rgb(7, 7, 7));
+.ranking-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
 }
 
-@media screen and (max-width: 768px) {
-    .ranking-container-1, .ranking-container-2, .ranking-container-3 {
-        flex-direction: column;
-        align-items: center;
+.ranking-section--arg::before {
+    background: linear-gradient(90deg, #75aadb, #ffffff, #75aadb);
+}
+
+.ranking-section--mex::before {
+    background: linear-gradient(90deg, #006341, #ffffff, #ce1126);
+}
+
+.ranking-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ranking-section-flag {
+    font-size: 26px;
+}
+
+.ranking-section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #f2f5f8;
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .rankings-hero-title {
+        font-size: 30px;
     }
 
-    .clan-arg-container-text, .arg-player-container-text, .mex-player-container-text {
-        font-size: 40px;
-        margin-left: 0;
-        text-align: center;
+    .ranking-section-title {
+        font-size: 18px;
     }
 
-    .arg-player-container-text {
-        margin-right: 0;
-        margin-bottom: 5px;
+    .ranking-section {
+        padding: 20px 14px;
     }
 
-    .ranking-container-2 > div:first-child {
-        order: 2; 
+    .ranking-section-flag {
+        font-size: 22px;
     }
-
-    .ranking-container-2 > div:last-child {
-        order: 1;
-    }
-
 }

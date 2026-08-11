@@ -1,166 +1,143 @@
-.ranking-player-table {
-    width: 50%;
-    margin: 0 auto; 
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    margin-top: 2rem;
-    font-size: 20px;
-    cursor: pointer;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+.ranking-loading {
+    color: #8a97a3;
+    text-align: center;
+    padding: 24px 0;
+    font-size: 14px;
 }
 
-.ranking-player-table table {
-    width: 100%;
-    border-collapse: collapse;
+.player-ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.player-ranking-row {
+    display: grid;
+    grid-template-columns: 40px 40px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid #75aadb;
     border-radius: 10px;
-    overflow: hidden;
-    margin-left: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    box-shadow: 4px 4px 25px rgba(146, 146, 146, 0.966);
+    padding: 10px 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.ranking-player-table th,
-.ranking-player-table td {
-    border: 1px solid white;
-    padding: 8px;
+.player-ranking-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.player-ranking-rank {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8a97a3;
     text-align: center;
 }
 
-.ranking-player-table th {
-    background-color: #3432c9;
-    font-size: 25px;
-}
-
-.ranking-player-table tbody tr:nth-child(even) {
-    background-color: #719fc5;
-}
-
-.ranking-player-table tbody tr:hover {
-    background-color: #2b4f77;
-}
-
-.ranking-player-table img {
-    max-width: 50px;
-    max-height: 50px;
+.player-ranking-league-icon {
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.table-rank-trophy, .table-rank-name-league {
+.player-ranking-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f2f5f8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.player-ranking-trophies {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    margin-left: 10px;
+    gap: 6px;
+    background: rgba(224, 167, 33, 0.15);
+    color: #f0c94a;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
-.table-rank-points {
-    padding: 3px 5px 3px 5px;
-    background-color: rgb(143, 94, 3);
-    border-radius: 15px;
-    color: white;
+.player-ranking-trophy-icon {
+    width: 16px;
+    height: 16px;
 }
 
-.trophy-img {
-    max-width: 30px;
-    max-height: 30px;
-    border-radius: 50%;   
+.ranking-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
 }
 
-.table-rank-p {
-    margin-left: 10px;
-}
-
-.show-more-btn-py-arg {
-    background-color: rgb(34, 15, 122);
-    color: white;
+.ranking-btn {
     border: none;
-    padding: 12px 20px;
     border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 13px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease; 
-    margin-top: 1rem;
-}
-
-.show-less-btn-py-arg {
-    background-color: rgb(31, 32, 80);
     color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    transition: box-shadow 0.3s ease; 
-    margin-top: 1rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.show-more-btn-py-arg:hover {
-    background-color: rgb(49, 31, 129);
-    box-shadow: 0 6px 10px rgba(255, 254, 254, 0.2);
+.ranking-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
 }
 
-.show-less-btn-py-arg:hover {
-    background-color: rgb(41, 42, 83);
-    box-shadow: 0 6px 10px rgba(252, 251, 251, 0.2);
+.ranking-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
-@media screen and (max-width: 768px) {
-    .ranking-player-table {
-        width: 95%;
-        font-size: 14px; 
+.ranking-btn--more-arg {
+    background: linear-gradient(135deg, #75aadb, #3a6b96);
+}
+
+.ranking-btn--less-arg {
+    background: linear-gradient(135deg, #4a5a68, #2c3946);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .player-ranking-row,
+    .ranking-btn {
+        transition: none;
     }
 
-    .ranking-player-table table {
-        margin-left: 0;
-        margin-top: 1rem;
+    .player-ranking-row:hover,
+    .ranking-btn:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .player-ranking-row {
+        grid-template-columns: 30px 34px 1fr auto;
+        gap: 8px;
+        padding: 8px 10px;
     }
 
-    .table-rank-name-league,
-    .table-rank-clan-name-img,
-    .table-rank-trophy {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-left: 0px;
+    .player-ranking-name {
+        font-size: 15px;
     }
 
-    .table-rank-name-league img,
-    .table-rank-trophy img {
-        max-width: 50px;
-        max-height: 50px;
-    }
-
-    .table-rank-points {
-        font-size: 15px; 
-    }
-
-    .table-rank-p {
-        margin-top: 2px;
-    }
-
-    .show-more-btn-py-arg,
-    .show-less-btn-py-arg {
-        padding: 10px 15px; 
-        font-size: 14px; 
-    }
-
-    .ranking-player-table th {
-        font-size: 19px; 
-    }
-
-    .ranking-player-table th,
-    .ranking-player-table td {
-        border: 1px solid white;
-        padding: 5px; 
-        text-align: center;
-    }
-
-    
-    .ranking-player-table td:nth-child(2),
-    .ranking-player-table th:nth-child(2) {
-        padding: 4px; 
+    .player-ranking-trophies {
+        font-size: 12px;
+        padding: 4px 10px;
     }
 }
