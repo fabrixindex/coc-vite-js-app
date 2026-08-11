@@ -58,20 +58,23 @@
    Selector de rondas
    ========================================================================== */
 
-.round-selector {
+   .round-selector {
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 6px 12px 14px;
     margin: 0 0 4px;
     scrollbar-width: thin;
+    scroll-snap-type: x proximate;
 }
 
 .round-pill {
     flex: 0 0 auto;
+    scroll-snap-align: start;
     background: #1c2733;
     color: #b8c4cf;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -401,6 +404,8 @@
     flex-direction: column;
     gap: 6px;
     margin-bottom: 14px;
+    max-height: 220px;
+    overflow-y: auto;
 }
 
 .selected-chip {

@@ -389,18 +389,21 @@ function ClanWarLeague() {
     const buildMention = (name) => `@${MENTION_OPEN}${name} COC${MENTION_CLOSE}`;
 
     const handleGenerateTopPlayers = () => {
-        const lines = ["🌟MEJORES JUGADORES DE LIGA🌟"];
+        const lines = ["🌟*MEJORES JUGADORES DE LIGA*🌟",
+            ""
+        ];
         topPlayersSelected.forEach((tag, index) => {
             const member = fullRoster.find((m) => m.tag === tag);
             if (!member) return;
-            lines.push(`${RANK_EMOJIS[index]} ${member.name} ${buildMention(member.name)}`);
+            lines.push(`${RANK_EMOJIS[index]} ${member.name} ${buildMention(member.name)}`, "");
         });
         setTopPlayersModalOpen(false);
         openModal("Mejores jugadores de liga", lines.join("\n"));
     };
 
     const handleGenerateBonus = () => {
-        const lines = ["⚔️BONUS DE LIGA DE GUERRA DE CLANES⚔️"];
+        const lines = ["⚔️*BONUS DE LIGA DE GUERRA DE CLANES*⚔️", 
+            ""];
         bonusSelected.forEach((tag, index) => {
             const member = fullRoster.find((m) => m.tag === tag);
             if (!member) return;
@@ -557,7 +560,7 @@ function ClanWarLeague() {
                             className="war-action-button war-action-button--bonus"
                             onClick={() => {
                                 setBonusSelected(
-                                    rosterRankedByStars.filter((m) => m.attacksCount > 0).map((m) => m.tag)
+                                    rosterRankedByStars.filter((m) => m.attacksCount > 0).slice(0, 10).map((m) => m.tag)
                                 );
                                 setBonusModalOpen(true);
                             }}
