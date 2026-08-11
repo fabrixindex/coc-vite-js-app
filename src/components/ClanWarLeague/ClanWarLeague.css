@@ -61,20 +61,21 @@
    .round-selector {
     display: flex;
     gap: 10px;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     padding: 6px 12px 14px;
-    margin: 0 0 4px;
+    margin: 0;
     scrollbar-width: thin;
-    scroll-snap-type: x proximate;
 }
 
 .round-pill {
     flex: 0 0 auto;
-    scroll-snap-align: start;
     background: #1c2733;
     color: #b8c4cf;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -85,6 +86,13 @@
     cursor: pointer;
     white-space: nowrap;
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+@media (max-width: 600px) {
+    .round-selector {
+        mask-image: linear-gradient(to right, black 88%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+    }
 }
 
 .round-pill:hover {
