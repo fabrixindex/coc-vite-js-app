@@ -1,100 +1,113 @@
-.card-member-container {
-    position: relative;
-    background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
-    color: white;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.8),
-        0 0 10px rgba(255, 215, 0, 0.1);
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
 
-    width: 350px;
-    transition: all 0.25s ease;
-    overflow: hidden;
+.card-member-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
-.card-member-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 215, 0, 0.2),
-        transparent
-    );
-
-    opacity: 0;
-    transition: opacity 0.3s ease;
-
-    pointer-events: none;
+.card-member-container {
+    position: relative;
+    background: #1a232c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 8px;
+    width: 300px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card-member-container:hover {
-    transform: translateY(-6px) scale(1.02);
-
-    box-shadow:
-        0 12px 25px rgba(0, 0, 0, 1),
-        0 0 20px rgba(255, 215, 0, 0.3),
-        0 0 40px rgba(255, 174, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.4);
 }
 
-.card-member-container:hover::before {
-    opacity: 1;
+/* Color por rol: Líder dorado, Co-líder violeta, Anciano azul, Miembro gris */
+.card-member-container--leader {
+    border-left: 4px solid #e0a721;
+}
+
+.card-member-container--coleader {
+    border-left: 4px solid #8b5fd9;
+}
+
+.card-member-container--elder {
+    border-left: 4px solid #2f80c9;
+}
+
+.card-member-container--member {
+    border-left: 4px solid #4a5a68;
+}
+
+.card-member-rank {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-member-rank-number {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #8a97a3;
+    background: #10161c;
+    border-radius: 10px;
+    padding: 3px 8px;
+}
+
+.card-member-rank-trend {
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 2px 6px;
+}
+
+.card-member-rank-trend--up {
+    color: #4bd188;
+    background: rgba(47, 158, 94, 0.15);
+}
+
+.card-member-rank-trend--down {
+    color: #ff6b6b;
+    background: rgba(217, 70, 59, 0.15);
 }
 
 .card-member-header {
     display: flex;
     align-items: center;
-    position: relative;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-right: 50px;
+}
+
+.league-icon-member {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
 }
 
 .player-name {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
-    font-size: 28px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-
-    color: #fcd709; 
-
-    text-shadow:
-        0 0 6px rgba(255, 215, 0, 0.7),
-        0 0 12px rgba(255, 174, 0, 0.6),
-        2px 2px 5px rgba(0, 0, 0, 0.9);
-
-    transition: transform 0.2s ease, text-shadow 0.2s ease;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f2f5f8;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card-description-th-trophy {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    background: #10161c;
+    border-radius: 10px;
     padding: 10px 14px;
-    margin-top: 10px;
-    
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.4);
-    
-    box-shadow:
-    0 0 10px rgba(0, 0, 0, 0.7),
-    inset 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-.trophy-img-member{
-    width: 80px;
-    height: 80px;
-
-    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7));
+    margin-bottom: 14px;
 }
 
 .card-member-th-img {
@@ -102,42 +115,31 @@
     align-items: center;
 }
 
-.th-img{
-    width: 160px;
+.th-img {
+    width: 60px;
     height: auto;
+}
 
-    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+.trophy-img-member {
+    width: 26px;
+    height: 26px;
 }
 
 .card-info-number-trophies {
     display: flex;
     align-items: center;
-    gap: 8px;
-
-    font-size: 20px;
-    font-weight: 800;
-
-    color: #ffd700;
-
-    text-shadow:
-        0 0 6px rgba(255, 215, 0, 0.7),
-        0 0 12px rgba(255, 174, 0, 0.6);
-}
-
-.card-description-th-trophy:hover {
-    transform: scale(1.03);
-    transition: 0.2s ease;
-
-    box-shadow:
-        0 0 15px rgba(255, 215, 0, 0.3),
-        inset 0 0 12px rgba(255, 255, 255, 0.08);
+    gap: 6px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f0c94a;
 }
 
 .card-member-description {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 12px;
+    gap: 6px;
+    margin-bottom: 12px;
 }
 
 .card-member-info-role,
@@ -146,153 +148,60 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    width: 100%;
-    padding: 8px 12px;
-
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.4);
-
-    font-size: 16px;
-    font-weight: 600;
-
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #10161c;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 13px;
+    color: #d7dee4;
 }
 
-.card-member-info-role {
-    color: #ffd700;
-
-    text-shadow:
-        0 0 6px rgba(255, 215, 0, 0.7),
-        0 0 12px rgba(255, 174, 0, 0.5);
+.card-member-info-donations strong {
+    color: #4bd188;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
 }
 
-.card-member-info-donations-received {
-    color: #ff4d4d;
-
-    text-shadow:
-        0 0 6px rgba(255, 77, 77, 0.6);
+.card-member-info-donations-received strong {
+    color: #ff8a80;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
 }
 
-.card-member-info-role:hover,
-.card-member-info-donations:hover,
-.card-member-info-donations-received:hover {
-    transform: scale(1.03);
-    box-shadow:
-        0 0 12px rgba(255, 255, 255, 0.2),
-        0 0 20px rgba(0, 0, 0, 0.8);
+.card-member-info-role strong {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
 }
 
-.card-member-description strong {
-    font-size: 18px;
-    letter-spacing: 1px;
+.card-member-cta {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #8a97a3;
+    letter-spacing: 0.3px;
 }
 
-.card-member-div-button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media (prefers-reduced-motion: reduce) {
+    .card-member-container {
+        transition: none;
+    }
+
+    .card-member-container:hover {
+        transform: none;
+    }
 }
-
-.card-member-button-more-info {
-    cursor: pointer;
-    width: 60%;
-    height: 48px;
-
-    border: none;
-    border-radius: 14px;
-
-    background: linear-gradient(145deg, #ff1a1a, #b30000);
-
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.6),
-        0 0 10px rgba(255, 0, 0, 0.6);
-
-    transition: all 0.2s ease;
-}
-
-.card-member-button-more-info:hover {
-    transform: scale(1.05);
-
-    box-shadow:
-        0 6px 15px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(255, 0, 0, 0.9),
-        0 0 30px rgba(255, 50, 50, 0.6);
-}
-
-.league-icon-member {
-    max-width: 85px;
-    max-height: 85px;
-}
-
-.card-member-link {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* PHONE */
 
 @media (max-width: 768px) {
-
     .card-member-container {
         width: 90%;
-        padding: 16px;
     }
 
     .player-name {
-        font-size: 22px;
-    }
-
-    .league-icon-member {
-        max-width: 65px;
-        max-height: 65px;
-    }
-
-    .th-img {
-        width: 110px;
-    }
-
-    .trophy-img-member {
-        width: 60px;
-        height: 60px;
-    }
-
-    .card-info-number-trophies {
-        font-size: 16px;
-    }
-
-    .card-member-button-more-info {
-        width: 80%;
-        height: 42px;
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 
-/* TABLET */
-
 @media (max-width: 1024px) {
-
     .card-member-container {
-        width: 300px;
-    }
-
-    .league-icon-member {
-        max-width: 65px;
-        max-height: 65px;
-    }
-
-    .player-name {
-        font-size: 24px;
-    }
-
-    .th-img {
-        width: 130px;
+        width: 280px;
     }
 }

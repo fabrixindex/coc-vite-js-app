@@ -1,98 +1,146 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { getClanData } from "../../Services/ConnectAPI.js";
 import MemberListContainer from "../MemberListContainer/memberListContainer.jsx";
-import Loader from "../Loader/Loader.jsx"; 
+import Loader from "../Loader/Loader.jsx";
 import "./ClanAndMembers.css";
 
+const getFlagEmoji = (countryCode) => {
+    if (!countryCode) return "🌍";
+    return countryCode
+        .toUpperCase()
+        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397));
+};
+
+const CLAN_TYPE_LABELS = {
+    open: "Abierto",
+    inviteOnly: "Solo por invitación",
+    closed: "Cerrado",
+};
+
 function ClanAndMembers() {
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
     const [clan, setClan] = useState(null);
     const [copied, setCopied] = useState(false);
-    const [showCopiedText, setShowCopiedText] = useState(false);
-    const clanTagRef = useRef(null);
 
     useEffect(() => {
         async function fetchClanData() {
             try {
                 const response = await getClanData();
                 setClan(response);
-                setLoading(false); 
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching CLAN:', error);
-                setLoading(false); 
+                setLoading(false);
             }
         }
 
         fetchClanData();
     }, []);
 
-    const copyToClipboard = () => {
-        const textToCopy = clanTagRef.current.textContent.trim();
-        navigator.clipboard.writeText(textToCopy);
-        setCopied(true);
-        setShowCopiedText(true);
-    
-        clanTagRef.current.textContent = "¡Copiado!";
-    
-        setTimeout(() => {
-            clanTagRef.current.textContent = clan.tag;
-            setShowCopiedText(false);
-        }, 3000);
-    };
-    
-
-    useEffect(() => {
-        if (showCopiedText) {
-            const timeout = setTimeout(() => {
-                setShowCopiedText(false);
-            }, 2000);
-            return () => clearTimeout(timeout);
-        }
-    }, [showCopiedText]);
-
     if (loading) {
-        return <Loader />; 
+        return <Loader />;
     }
 
+    if (!clan) {
+        return <div className="clan-hero-error">No se pudo cargar la información del clan.</div>;
+    }
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(clan.tag).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2500);
+        }).catch((error) => {
+            console.error('Error al copiar al portapapeles:', error);
+        });
+    };
+
+    const totalWars = (clan.warWins || 0) + (clan.warLosses || 0) + (clan.warTies || 0);
+    const winRate = totalWars > 0 ? (clan.warWins / totalWars) * 100 : 0;
+
+    const stats = [
+        { label: "Nivel del clan", value: clan.clanLevel },
+        { label: "Miembros", value: `${clan.members}/50` },
+        { label: "Tipo de clan", value: CLAN_TYPE_LABELS[clan.type] || clan.type },
+        { label: "Puntos del clan", value: clan.clanPoints?.toLocaleString() },
+        { label: "Puntos de capital", value: clan.clanCapitalPoints?.toLocaleString() },
+        { label: "Liga de la capital", value: clan.capitalLeague?.name },
+        { label: "Idioma del chat", value: clan.chatLanguage?.name || "—" },
+        { label: "TH requerido", value: clan.requiredTownhallLevel },
+        { label: "Trofeos requeridos", value: clan.requiredTrophies?.toLocaleString() },
+        { label: "Frecuencia de guerra", value: clan.warFrequency },
+    ];
+
     return (
-        <>
-            <div className="container">
-                <div className="clan-card-container">
+        <div className="clan-page">
 
-                    <div className="clan-img-container">
-                        <img src={clan.badgeUrls?.large} alt="Insignia del clan" className="clan-img" />
-                        <p className="clan-war-league">
-                            <img src="/league.png" alt="league" className="league-img" /> 
-                            <span className="bg-text">{clan.warLeague.name}</span>
-                        </p>
+            <div className="clan-hero">
 
-                        <p ref={clanTagRef} onClick={copyToClipboard} className="clan-tag" onMouseEnter={() => setCopied(false)} onMouseLeave={() => setShowCopiedText(false)}>{clan.tag}</p>
+                <div className="clan-hero-top">
+                    <img src={clan.badgeUrls?.large} alt="Insignia del clan" className="clan-hero-badge" />
 
-                    </div>
-
-                    <div className="clan-card-container-child">
-                        <h1 className="clan-name">{clan.name}</h1>
-                        <p className="clan-description">{clan.description}</p>
-
-                        <div className="clan-card-contained-mini-child">
-                            <p>Nivel del clan: {clan.clanLevel}</p>
-                            <p>Miembros: {clan.members}</p>
-                            <p>Ubicación: {clan.location?.name}</p>
-                            <p>Liga de la capital del clan: {clan.capitalLeague?.name}</p>
-                            <p>Puntos del clan: {clan.clanPoints}</p>
-                            <p>Idioma del chat del clan: {clan.chatLanguage?.name}</p>
-                            <p>Nivel de ayuntamiento requerido: {clan.requiredTownhallLevel}</p>
-                            <p>Trofeos requeridos: {clan.requiredTrophies}</p>
-                            <p>Frecuencia de guerra: {clan.warFrequency}</p>
-                            <p>Victorias en guerra: {clan.warWins}</p>
-                            <p>Racha de victorias en guerra: {clan.warWinStreak}</p>
-                        </div>
+                    <div className="clan-hero-titles">
+                        <h1 className="clan-hero-name">{clan.name}</h1>
+                        <button className="clan-hero-tag" onClick={copyToClipboard}>
+                            {copied ? "¡Copiado! ✅" : `${clan.tag} 📋`}
+                        </button>
                     </div>
                 </div>
+
+                {clan.description && (
+                    <p className="clan-hero-description">{clan.description}</p>
+                )}
+
+                {clan.labels?.length > 0 && (
+                    <div className="clan-hero-labels">
+                        {clan.labels.map((label) => (
+                            <span key={label.id} className="clan-label-chip">
+                                <img src={label.iconUrls?.small} alt={label.name} />
+                                {label.name}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                <div className="clan-warleague-row">
+                    <span className="clan-warleague-badge">⚔️ {clan.warLeague?.name || "Sin liga de guerra"}</span>
+                    {clan.location?.countryCode && (
+                        <span className="clan-location-badge">
+                            {getFlagEmoji(clan.location.countryCode)} {clan.location.name}
+                        </span>
+                    )}
+                </div>
+
+                <div className="clan-stats-grid">
+                    {stats.map((stat) => (
+                        <div key={stat.label} className="clan-stat-chip">
+                            <span className="clan-stat-chip-label">{stat.label}</span>
+                            <span className="clan-stat-chip-value">{stat.value ?? "—"}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="clan-war-record">
+                    <div className="clan-war-record-header">
+                        <h3 className="clan-war-record-title">🏆 Récord de guerra</h3>
+                        <span className="clan-war-record-score">
+                            {clan.warWins}-{clan.warLosses}-{clan.warTies}
+                        </span>
+                    </div>
+
+                    <div className="clan-war-record-bar-track">
+                        <div className="clan-war-record-bar-fill" style={{ width: `${winRate}%` }} />
+                    </div>
+
+                    <div className="clan-war-record-footer">
+                        <span>%{winRate.toFixed(1)} de victorias</span>
+                        <span>🔥 Racha actual: {clan.warWinStreak}</span>
+                    </div>
+                </div>
+
             </div>
 
-            <MemberListContainer/>
-        </>
+            <MemberListContainer />
+        </div>
     );
 }
 
