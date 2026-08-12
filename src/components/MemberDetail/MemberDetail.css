@@ -1,227 +1,470 @@
-.member-card {
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+.member-detail-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 16px 56px;
+    color: #f2f5f8;
+}
+
+.member-detail-error {
+    text-align: center;
+    color: #8a97a3;
+    padding: 60px 16px;
+    font-size: 15px;
+}
+
+/* ==========================================================================
+   Encabezado
+   ========================================================================== */
+
+.member-hero {
+    background: #161f28;
+    border: 1px solid rgba(224, 167, 33, 0.25);
+    border-radius: 20px;
+    padding: 26px;
+    margin-bottom: 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.member-hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.member-hero-clan-badge,
+.member-hero-league-badge {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 10px rgba(224, 167, 33, 0.3));
+}
+
+.member-hero-titles {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
-    margin: 2rem auto;
-    padding: 24px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #1a1a1a, #2b2b2b);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.9),
-        0 0 20px rgba(255,255,255,0.05);
+    gap: 8px;
+    min-width: 0;
+}
+
+.member-hero-name {
     font-family: 'Rajdhani', sans-serif;
-    transition: all 0.3s ease;
-}
-
-.member-card:hover {
-    transform: scale(1.02);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,1),
-        0 0 25px rgba(255,255,255,0.1);
-}
-
-.card-header-member-detail {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 0;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.card-sub-header p {
-    background: linear-gradient(135deg, #00f0ff, #0066ff);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 10px;
+    font-size: 32px;
     font-weight: 800;
-    font-size: 14px;
-    box-shadow:
-        0 0 10px rgba(0, 200, 255, 0.7);
-    cursor: pointer;
-}
-
-.card-body {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-
-    gap: 12px;
-    width: 100%;
-}
-
-.clan-badge-member-detail,
-.league-badge-member-detail {
-    width: 100px;
-    height: 100px;
-
-    border-radius: 50%;
-
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
-
-    transition: transform 0.2s ease;
-}
-
-.clan-badge:hover,
-.league-icon-member-detail:hover {
-    transform: scale(1.1);
-}
-
-.player-name-member-detail {
-    font-size: 42px;
-    font-weight: 900;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-
-    background: linear-gradient(90deg, #ffd700, #ff8c00);
-
+    margin: 0;
+    text-align: center;
+    background: linear-gradient(135deg, #f0c94a, #e0a721, #f0c94a);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
-
-    text-shadow:
-        0 0 10px rgba(255, 215, 0, 0.5),
-        0 0 20px rgba(255, 140, 0, 0.4);
+    color: transparent;
 }
 
-.card-body p {
+.member-hero-tag {
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d7dee4;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.member-hero-tag:hover {
+    background: #2a3947;
+    transform: translateY(-1px);
+}
+
+.member-hero-tag:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.member-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.member-chip {
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #d7dee4;
+}
+
+/* ==========================================================================
+   Secciones genéricas
+   ========================================================================== */
+
+.member-section {
+    background: #161f28;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.member-section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: #f2f5f8;
+}
+
+.member-subsection-label {
+    font-size: 12px;
+    color: #8a97a3;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin: 14px 0 8px;
+}
+
+.member-subsection-label:first-child {
+    margin-top: 0;
+}
+
+/* ==========================================================================
+   Grilla de estadísticas / chips
+   ========================================================================== */
+
+.member-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.member-stat-chip {
+    display: flex;
+    flex-direction: column;
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.member-stat-chip-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
+}
+
+.member-stat-chip-label {
+    font-size: 10px;
+    color: #8a97a3;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.member-stat-chip-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #f0c94a;
+    margin-top: 2px;
+}
+
+.member-stat-chip-sublabel {
+    font-size: 11px;
+    color: #8a97a3;
+    margin-top: 2px;
+}
+
+/* ==========================================================================
+   Barras compartidas (donaciones / héroes / logros)
+   ========================================================================== */
+
+.member-bar-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 70px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.member-bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f2f5f8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.member-bar-track {
+    height: 9px;
+    background: #0d1218;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.member-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.4s ease;
+}
+
+.member-bar-fill--given {
+    background: linear-gradient(90deg, #2f9e5e, #4bd188);
+}
+
+.member-bar-fill--received {
+    background: linear-gradient(90deg, #b5502f, #e0a721);
+}
+
+.member-bar-fill--hero {
+    background: linear-gradient(90deg, #2f80c9, #4fa3ff);
+}
+
+.member-bar-fill--achievement {
+    background: linear-gradient(90deg, #e0a721, #f0c94a);
+}
+
+.member-bar-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: #f2f5f8;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.member-donation-ratio {
+    text-align: center;
+    font-size: 13px;
+    color: #8a97a3;
+    margin: 8px 0 0;
+}
+
+/* ==========================================================================
+   Héroes
+   ========================================================================== */
+
+.member-hero-bars {
+    margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   Progreso general
+   ========================================================================== */
+
+.member-progress-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.member-progress-chip {
+    display: flex;
+    flex-direction: column;
+    background: #1c2733;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.member-progress-chip-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #4fa3ff;
+}
+
+.member-progress-chip-label {
+    font-size: 11px;
+    color: #8a97a3;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin: 2px 0 8px;
+}
+
+.member-progress-chip-track {
+    height: 8px;
+    background: #0d1218;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.member-progress-chip-fill {
+    height: 100%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #2f80c9, #4fa3ff);
+    transition: width 0.4s ease;
+}
+
+/* ==========================================================================
+   Logros
+   ========================================================================== */
+
+.member-achievements-summary {
+    margin-bottom: 16px;
+}
+
+.member-achievements-completed {
+    text-align: center;
+    font-size: 13px;
+    color: #8a97a3;
+    margin: 4px 0 0;
+}
+
+.member-achievements-empty {
+    text-align: center;
+    color: #4bd188;
+    font-size: 14px;
+    padding: 12px 0;
+}
+
+.member-achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.member-achievement-row {
+    background: #10161c;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.member-achievement-row-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 8px;
+    gap: 10px;
+}
 
-    padding: 10px 14px;
-    border-radius: 12px;
-
-    font-size: 15px;
+.member-achievement-name {
+    font-family: 'Rajdhani', sans-serif;
     font-weight: 700;
+    font-size: 15px;
+    color: #f2f5f8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-    background: rgba(0,0,0,0.5);
+.member-achievement-stars {
+    font-size: 13px;
+    color: #f0c94a;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+}
 
-    box-shadow:
-        inset 0 0 8px rgba(255,255,255,0.05),
-        0 0 8px rgba(0,0,0,0.8);
+.member-achievement-row .member-bar-track {
+    margin-bottom: 6px;
+}
 
-    transition: all 0.2s ease;
+.member-achievement-row-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    color: #8a97a3;
+}
+
+.member-achievement-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: right;
+}
+
+.member-achievements-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.member-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 13px;
     cursor: pointer;
+    color: white;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.card-body p:hover {
-    transform: scale(1.05);
-
-    box-shadow:
-        0 0 12px rgba(255,255,255,0.2),
-        0 0 20px rgba(0,0,0,0.9);
+.member-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
 }
 
-/* 1 - Town Hall */
-.card-body p:nth-child(1) {
-    background: linear-gradient(135deg, #f97316, #7c2d12);
+.member-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
-/* 2 - Exp Level */
-.card-body p:nth-child(2) {
-    background: linear-gradient(135deg, #38bdf8, #075985);
+.member-btn--more {
+    background: linear-gradient(135deg, #2f80c9, #1b4f7a);
 }
 
-/* 3 - Trophies */
-.card-body p:nth-child(3) {
-    background: linear-gradient(135deg, #ffd700, #ca8a04);
-    color: #000;
+.member-btn--less {
+    background: linear-gradient(135deg, #4a5a68, #2c3946);
 }
 
-/* 4 - Best Trophies */
-.card-body p:nth-child(4) {
-    background: linear-gradient(135deg, #facc15, #854d0e);
-    color: #000;
-}
-
-/* 5 - War Stars */
-.card-body p:nth-child(5) {
-    background: linear-gradient(135deg, #ef4444, #7f1d1d);
-}
-
-/* 6 - Attack Wins */
-.card-body p:nth-child(6) {
-    background: linear-gradient(135deg, #22c55e, #14532d);
-}
-
-/* 7 - Defense Wins */
-.card-body p:nth-child(7) {
-    background: linear-gradient(135deg, #0ea5e9, #082f49);
-}
-
-/* 8 - Builder Hall */
-.card-body p:nth-child(8) {
-    background: linear-gradient(135deg, #a855f7, #581c87);
-}
-
-/* 9 - Builder Trophies */
-.card-body p:nth-child(9) {
-    background: linear-gradient(135deg, #14b8a6, #042f2e);
-}
-
-/* 10 - Best Builder Trophies */
-.card-body p:nth-child(10) {
-    background: linear-gradient(135deg, #06b6d4, #083344);
-}
-
-/* 11 - Role */
-.card-body p:nth-child(11) {
-    background: linear-gradient(135deg, #f43f5e, #881337);
-}
-
-/* 12 - Donations */
-.card-body p:nth-child(12) {
-    background: linear-gradient(135deg, #22c55e, #14532d);
-}
-
-/* 13 - Donations Received */
-.card-body p:nth-child(13) {
-    background: linear-gradient(135deg, #f43f5e, #881337);
-}
-
-/* 14 - Capital Contributions */
-.card-body p:nth-child(14) {
-    background: linear-gradient(135deg, #6366f1, #1e1b4b);
-}
-
-/* 15 - League */
-.card-body p:nth-child(15) {
-    background: linear-gradient(135deg, #eab308, #713f12);
-    color: #000;
-}
-
-/* 16 - Builder League */
-.card-body p:nth-child(16) {
-    background: linear-gradient(135deg, #8b5cf6, #2e1065);
-}
-
-.card-body p {
-    box-shadow:
-        0 0 10px rgba(0,0,0,0.8),
-        inset 0 0 8px rgba(255,255,255,0.05);
-
-    font-size: 18px;
-    font-weight: 900;
-}
-
-@media (max-width: 768px) {
-    .member-card {
-        width: 95%;
-        padding: 16px;
+@media (prefers-reduced-motion: reduce) {
+    .member-hero-tag,
+    .member-bar-fill,
+    .member-progress-chip-fill,
+    .member-btn {
+        transition: none;
     }
 
-    .player-name-member-detail {
-        font-size: 28px;
-        text-align: center;
+    .member-btn:hover {
+        transform: none;
+    }
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .member-hero-name {
+        font-size: 24px;
     }
 
-    .clan-badge,
-    .league-icon-member-detail {
-        width: 60px;
-        height: 60px;
+    .member-hero-clan-badge,
+    .member-hero-league-badge {
+        width: 56px;
+        height: 56px;
+    }
+
+    .member-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .member-progress-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-bar-row {
+        grid-template-columns: 80px 1fr 55px;
+        gap: 6px;
+    }
+
+    .member-bar-label {
+        font-size: 12px;
+    }
+
+    .member-achievement-info {
+        display: none;
     }
 }

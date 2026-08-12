@@ -7,17 +7,21 @@ import Loader from "../Loader/Loader.jsx";
 function MemberDetailContainer() {
     const [member, setMember] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     let { PLAYERTAG } = useParams();
 
     useEffect(() => {
         async function fetchMember() {
             try {
+                setLoading(true);
+                setError(false);
                 const response = await getSinglePlayer(PLAYERTAG);
                 setMember(response);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching member:', error);
+                setError(true);
                 setLoading(false);
             }
         }
@@ -26,7 +30,15 @@ function MemberDetailContainer() {
     }, [PLAYERTAG]);
 
     if (loading) {
-        return  <Loader />;
+        return <Loader />;
+    }
+
+    if (error || !member) {
+        return (
+            <div className="member-detail-error">
+                No se pudo cargar la información de este jugador. Puede que el tag no sea válido.
+            </div>
+        );
     }
 
     return <MemberDetailList member={member} />;
