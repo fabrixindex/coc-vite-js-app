@@ -15,6 +15,7 @@ function CurrentWar() {
         async function fetchWarData() {
             try {
                 const response = await getCurrentWarData();
+                console.log("data:",response)
                 setWar(response);
                 setLoading(false);
             } catch (error) {

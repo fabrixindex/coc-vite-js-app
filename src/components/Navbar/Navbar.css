@@ -1,51 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ==========================================================================
+   Barra superior
+   ========================================================================== */
+
 #nav {
-  background-color: rgba(104, 103, 103, 0.5);
-  padding: 0.6rem 1.5rem; 
-  border-radius: 20px; 
-  margin-top: 1rem;
-  width: 85%; 
-  margin-left: auto; 
-  margin-right: auto; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    background: rgba(22, 31, 40, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(224, 167, 33, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 1rem auto 0;
+    width: 85%;
+    max-width: 1100px;
+
+    position: sticky;
+    top: 12px;
+    z-index: 1001;
 }
 
-.menu-icon {
-  cursor: pointer;
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #f0c94a;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
 }
 
-.nav-container {
-  position: fixed;
-  top: 0;
-  left: -300px; 
-  width: 250px;
-  height: 100vh;
-  background-color: rgba(65, 64, 64, 0.8);
-  transition: left 0.3s ease; 
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
-  
-.nav-container.open {
-    left: 0; 
-}
+/* ==========================================================================
+   Links horizontales (desktop)
+   ========================================================================== */
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.nav-bar-li {
-  padding: 10px;
-  color: white;
-  cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-}
-
-.nav-bar-li:hover {
-  background-color: #555;
+.nav-links-desktop {
+    display: none;
+    list-style: none;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-item {
-  text-decoration: none; 
-  color: white;
+    display: inline-block;
+    text-decoration: none;
+    color: #d7dee4;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border-bottom: 2px solid transparent;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #f2f5f8;
+}
+
+.nav-item--active {
+    color: #f0c94a;
+    border-bottom-color: #e0a721;
+}
+
+.nav-item:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Botón hamburguesa (mobile)
+   ========================================================================== */
+
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    border-radius: 10px;
+    color: #f2f5f8;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.menu-icon:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.menu-icon:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Overlay de fondo (mobile)
+   ========================================================================== */
+
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 999;
+}
+
+.nav-overlay--visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ==========================================================================
+   Drawer lateral (mobile)
+   ========================================================================== */
+
+.nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100vh;
+    background: rgba(20, 27, 34, 0.97);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(224, 167, 33, 0.2);
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.nav-drawer--open {
+    transform: translateX(0);
+}
+
+.nav-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 18px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-drawer-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f0c94a;
+}
+
+.nav-drawer-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    border-radius: 50%;
+    color: #f2f5f8;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.nav-drawer-close:hover {
+    background: #d9463b;
+}
+
+.nav-drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.nav-drawer-item {
+    display: block;
+    text-decoration: none;
+    color: #d7dee4;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border-left: 3px solid transparent;
+    margin-bottom: 2px;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-drawer-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-drawer-item--active {
+    color: #f0c94a;
+    background: rgba(224, 167, 33, 0.12);
+    border-left-color: #e0a721;
+}
+
+.nav-drawer-item:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-drawer,
+    .nav-overlay,
+    .nav-item,
+    .nav-drawer-item {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   Breakpoint: desktop muestra links horizontales, oculta hamburguesa
+   ========================================================================== */
+
+@media (min-width: 860px) {
+    .nav-links-desktop {
+        display: flex;
+    }
+
+    .menu-icon,
+    .nav-overlay,
+    .nav-drawer {
+        display: none;
+    }
 }

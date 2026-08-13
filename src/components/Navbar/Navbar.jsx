@@ -1,62 +1,108 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+
+const NAV_LINKS = [
+    { to: '/', label: 'Home' },
+    { to: '/losMagiosClan', label: 'Nuestro Clan' },
+    { to: '/currentWar', label: 'Guerra Actual' },
+    { to: '/warleague', label: 'Liga de Guerra' },
+    { to: '/capitalRaid', label: 'Asaltos de la Capital' },
+    { to: '/checkDonations', label: 'Donaciones del Clan' },
+    { to: '/rankings', label: 'Rankings' },
+];
 
 function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
-      }
-    }
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    // Evita que el fondo scrollee mientras el drawer está abierto en mobile
+    useEffect(() => {
+        document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMenuOpen]);
 
-  const handleLinkClick = () => {
-    setIsMenuOpen(false); 
-  };
+    const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+    const closeMenu = () => setIsMenuOpen(false);
 
-  return (
-    <nav id='nav'>
+    return (
+        <>
+            <nav id="nav">
+                <NavLink to="/" className="nav-logo" onClick={closeMenu}>
+                    ⚔️ <span>Los Magios</span>
+                </NavLink>
 
-      <div className="menu-icon" onClick={toggleMenu}>
-        <FaBars size={20} color="white" />
-      </div>
+                <ul className="nav-links-desktop">
+                    {NAV_LINKS.map((link) => (
+                        <li key={link.to}>
+                            <NavLink
+                                to={link.to}
+                                end={link.to === '/'}
+                                className={({ isActive }) => `nav-item${isActive ? ' nav-item--active' : ''}`}
+                            >
+                                {link.label}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
 
-      <div ref={menuRef} className={`nav-container ${isMenuOpen ? 'open' : ''}`}>
-        <ul>
-          
-          <Link to="/" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Home </li> </Link>
-          
-          <Link to="/losMagiosClan" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Nuestro Clan </li> </Link>
+                <button
+                    type="button"
+                    className="menu-icon"
+                    onClick={toggleMenu}
+                    aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                    aria-expanded={isMenuOpen}
+                >
+                    {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+                </button>
+            </nav>
 
-          <Link to="/currentWar" className='nav-item'> <li className='nav-bar-li' onClick={handleLinkClick}> Estadisticas de la Guerra actual </li> </Link>
-          
-          <Link to="/warleague" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Estadisticas de CWL </li> </Link> 
+            <div className={`nav-overlay${isMenuOpen ? ' nav-overlay--visible' : ''}`} />
 
-          <Link to="/capitalRaid" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Asaltos de la Capital </li> </Link>
+            <div ref={menuRef} className={`nav-drawer${isMenuOpen ? ' nav-drawer--open' : ''}`}>
+                <div className="nav-drawer-header">
+                    <span className="nav-drawer-title">⚔️ Los Magios</span>
+                    <button
+                        type="button"
+                        className="nav-drawer-close"
+                        onClick={closeMenu}
+                        aria-label="Cerrar menú"
+                    >
+                        <FaTimes size={18} />
+                    </button>
+                </div>
 
-          <Link to="/checkDonations" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Donaciones del Clan </li> </Link>
-          
-          <Link to="/rankings" className='nav-item' onClick={handleLinkClick}> <li className='nav-bar-li'> Rankings </li> </Link>
-
-        </ul>
-      </div>
-
-    </nav>
-  );
+                <ul>
+                    {NAV_LINKS.map((link) => (
+                        <li key={link.to}>
+                            <NavLink
+                                to={link.to}
+                                end={link.to === '/'}
+                                className={({ isActive }) => `nav-drawer-item${isActive ? ' nav-drawer-item--active' : ''}`}
+                                onClick={closeMenu}
+                            >
+                                {link.label}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </>
+    );
 }
 
 export default Navbar;
