@@ -337,7 +337,7 @@ function CurrentWar() {
                                 <strong>{war.clan.stars}</strong>
                             </div>
                             <span className="war-side-stat">Ataques: {war.clan.attacks}/{war.attacksPerMember * war.teamSize}</span>
-                            <span className="war-side-stat">Destrucción: {formatPercentage(war.clan.destructionPercentage)}</span>
+                            <span className="war-side-stat">Destrucción: {formatPercentage(war.clan.destructionPercentage)}%</span>
                         </div>
 
                         <div className="war-side-stats">
