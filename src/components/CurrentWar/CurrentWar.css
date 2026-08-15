@@ -252,7 +252,7 @@
 }
 
 .war-compare-block-title {
-    font-size: 13px;
+    font-size: 16px;
     color: #8a97a3;
     margin: 0 0 8px;
 }
@@ -266,7 +266,7 @@
 }
 
 .war-bar-label {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: #f2f5f8;
     overflow: hidden;
@@ -296,7 +296,7 @@
 }
 
 .war-bar-value {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     color: #f2f5f8;
     text-align: right;

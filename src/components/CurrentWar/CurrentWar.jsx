@@ -390,7 +390,7 @@ function CurrentWar() {
 
                 </div>
 
-                {/* ---------- Comparativa ---------- */}
+                {/* ---------- Comparativa ----------- */}
                 <div className="war-stats-section">
                     <h3 className="war-section-title">📊 Comparativa</h3>
 
