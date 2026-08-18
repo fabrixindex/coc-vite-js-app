@@ -18,21 +18,6 @@ export default defineConfig({
     },
   },
 
-  /*server: {
-    proxy: {
-      '/api': {
-        target: 'https://api.clashofclans.com',
-        changeOrigin: true,
-        pathRewrite: { '^/api': '' },
-        
-        bypass: function(req, res, proxyOptions) {
-          if (req.headers.origin) {
-            req.headers.origin = req.headers.origin.replace('https://coc-los-magios-vite-js-app.vercel.app', 'https://cors-anywhere.herokuapp.com');
-          }
-        }
-      },
-    },
-  },*/
 
   define: {
     'process.env.TOKEN' : JSON.stringify(process.env.TOKEN),

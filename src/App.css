@@ -1,6 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&display=swap');
+
+:root {
+    --color-bg: #0d1218;
+    --color-surface: #161f28;
+    --color-surface-alt: #1a232c;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-text: #f2f5f8;
+    --color-text-muted: #8a97a3;
+    --color-gold: #e0a721;
+    --color-gold-light: #f0c94a;
+    --color-green: #2f9e5e;
+    --color-red: #d9463b;
+    --color-blue: #2f80c9;
+    --font-display: 'Rajdhani', sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
     overflow-x: hidden;
-  }
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+}
+
+a {
+    color: inherit;
+}

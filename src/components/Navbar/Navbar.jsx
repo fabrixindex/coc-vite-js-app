@@ -43,7 +43,7 @@ function Navbar() {
         <>
             <nav id="nav">
                 <NavLink to="/" className="nav-logo" onClick={closeMenu}>
-                    ⚔️ <span>Los Magios</span>
+                    ⚔️ <span>Home</span>
                 </NavLink>
 
                 <ul className="nav-links-desktop">
@@ -75,7 +75,7 @@ function Navbar() {
 
             <div ref={menuRef} className={`nav-drawer${isMenuOpen ? ' nav-drawer--open' : ''}`}>
                 <div className="nav-drawer-header">
-                    <span className="nav-drawer-title">⚔️ Los Magios</span>
+                    <span className="nav-drawer-title">⚔️ Home </span>
                     <button
                         type="button"
                         className="nav-drawer-close"

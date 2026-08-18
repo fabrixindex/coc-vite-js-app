@@ -3,6 +3,7 @@ import CurrentCapitalRaidContainer from './components/CurrentCapitalRaidContaine
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ClanAndMembers from './components/ClanAndMembers/ClanAndMembers.jsx'
 import Navbar from './components/Navbar/Navbar.jsx'
+import DocumentTitleUpdater from './components/DocumentTitleUpdater/DocumentTitleUpdater.jsx'
 import MemberDetailContainer from './components/MemberDetailContainer/MemberDetailContainer.jsx'
 import CurrentWar from './components/CurrentWar/CurrentWar.jsx'
 import CheckDonations from './components/CheckDonations/CheckDonations.jsx'
@@ -13,6 +14,8 @@ import Home from './components/Home/Home.jsx'
 function App() {
   return (
     <BrowserRouter>
+
+      <DocumentTitleUpdater />
       
       <Navbar/>
 
