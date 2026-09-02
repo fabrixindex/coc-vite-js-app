@@ -227,9 +227,8 @@ function ClanWarLeague() {
         );
 
         const lines = [
-            "⏱️⚔️‼️ *RECORDATORIO* ‼️⚔️⏱️",
-            "🔥 *ATAQUE DE LIGA (CWL)*",
-            "",
+            "⏱️⚔️‼️ RECORDATORIO ‼️⚔️⏱️",
+            "🔥 ATAQUE DE LIGA (CWL)",
         ];
 
         if (pendingMembers.length === 0) {
@@ -239,10 +238,9 @@ function ClanWarLeague() {
         }
 
         lines.push(
-            "",
             "Recuerden realizar su ataque en la Liga de Guerra de Clanes!!",
-            "~~~~~~~~~~~~~~~~~~~~~~",
-            "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑",
+            "~~~~~~~~",
+            "⚔️🛡️ CÚPULA DEL CLAN 🛡️⚔️"
         );
 
         openModal("Recordatorio CWL", lines.join("\n"));
@@ -263,19 +261,17 @@ function ClanWarLeague() {
         }
 
         const resultLine = {
-            ganado: "*¡HEMOS GANADO LA GUERRA!* 💪🏼🔥",
-            perdido: "*¡HEMOS PERDIDO LA GUERRA!* ☠️😪",
-            empatado: "*¡HEMOS EMPATADO LA GUERRA!* 🤝⚡",
+            ganado: "¡HEMOS GANADO LA GUERRA! 💪🏼🔥",
+            perdido: "¡HEMOS PERDIDO LA GUERRA! ☠️😪",
+            empatado: "¡HEMOS EMPATADO LA GUERRA! 🤝⚡",
         }[result];
 
         const content = [
-            "⚔️ *GUERRA DE CLANES (CWL)* ⚔️",
-            "😱💥 *FINALIZADA* 💥😱",
-            "",
+            "⚔️ GUERRA DE CLANES (CWL) ⚔️",
+            "😱💥 FINALIZADA 💥😱",
             resultLine,
-            "",
-            "~~~~~~~~~~~~~~~~~~~~~~~~",
-            "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑",
+            "~~~~~~~~",
+            "👑🛡️ CÚPULA DEL CLAN 🛡️👑",
         ].join("\n");
 
         openModal("Cierre de guerra CWL", content);
@@ -332,10 +328,8 @@ function ClanWarLeague() {
         const nextRound = selectedRound + 1;
 
         const lines = [
-            `🔄 *CAMBIOS PARA LA RONDA NÚMERO ${nextRound}* 🔄`,
-            "",
-            "⛔😔 *SALEN* 😔⛔",
-            "",
+            `🔄 CAMBIOS PARA LA RONDA NÚMERO ${nextRound} 🔄`,
+            "⛔😔 SALEN 😔⛔",
         ];
 
         if (outNames.length === 0) {
@@ -344,11 +338,7 @@ function ClanWarLeague() {
             outNames.forEach((name) => lines.push(`🔴 ${name}`));
         }
 
-        lines.push("")
-
-        lines.push("✅🤩 *ENTRAN* 🤩✅",
-            "",
-        );
+        lines.push("✅🤩 ENTRAN 🤩✅");
 
         if (inNames.length === 0) {
             lines.push("—");
@@ -356,9 +346,7 @@ function ClanWarLeague() {
             inNames.forEach((name) => lines.push(`🟢${name}`));
         }
 
-        lines.push("")
-
-        lines.push("~~~~~~~~~~~~~~~~~~~~~~~~", "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑");
+        lines.push("~~~~~~~~~", "👑🛡️ CÚPULA DEL CLAN 🛡️👑");
 
         setSwapModalOpen(false);
         openModal("Cambios de ronda", lines.join("\n"));
@@ -389,21 +377,18 @@ function ClanWarLeague() {
     const buildMention = (name) => `@${MENTION_OPEN}${name} COC${MENTION_CLOSE}`;
 
     const handleGenerateTopPlayers = () => {
-        const lines = ["🌟*MEJORES JUGADORES DE LIGA*🌟",
-            ""
-        ];
+        const lines = ["🌟MEJORES JUGADORES DE LIGA🌟"];
         topPlayersSelected.forEach((tag, index) => {
             const member = fullRoster.find((m) => m.tag === tag);
             if (!member) return;
-            lines.push(`${RANK_EMOJIS[index]} ${member.name} ${buildMention(member.name)}`, "");
+            lines.push(`${RANK_EMOJIS[index]} ${member.name} ${buildMention(member.name)}`);
         });
         setTopPlayersModalOpen(false);
         openModal("Mejores jugadores de liga", lines.join("\n"));
     };
 
     const handleGenerateBonus = () => {
-        const lines = ["⚔️*BONUS DE LIGA DE GUERRA DE CLANES*⚔️", 
-            ""];
+        const lines = ["⚔️BONUS DE LIGA DE GUERRA DE CLANES⚔️"];
         bonusSelected.forEach((tag, index) => {
             const member = fullRoster.find((m) => m.tag === tag);
             if (!member) return;
@@ -417,13 +402,11 @@ function ClanWarLeague() {
     const handleGenerateResult = () => {
         const ordinal = ORDINALS[resultPlacement - 1] || `${resultPlacement}°`;
         const content = [
-            "⚔️ *LIGA DE GUERRA DE CLANES* ⚔️",
-            "😱💥 *FINALIZADA* 💥😱",
-            "",
-            `*¡HEMOS OBTENIDO EL ${ordinal} PUESTO* 🏅🌟`,
-            "",
-            "~~~~~~~~~~~~~~~~~~~~~~~~",
-            "👑🛡️ *CÚPULA DEL CLAN* 🛡️👑",
+            "⚔️ LIGA DE GUERRA DE CLANES⚔️",
+            "😱💥 FINALIZADA 💥😱",
+            `¡HEMOS OBTENIDO EL ${ordinal} PUESTO 🏅🌟`,
+            "~~~~~~~~",
+            "👑🛡️ CÚPULA DEL CLAN 🛡️👑",
         ].join("\n");
         setResultModalOpen(false);
         openModal("Resultado de la liga", content);
@@ -465,16 +448,6 @@ function ClanWarLeague() {
         avgDestruction: stat.attacks > 0 ? stat.destructionSum / stat.attacks : 0,
         avgConceded: stat.defenses > 0 ? stat.starsConcededSum / stat.defenses : 0,
     }));
-
-    const rosterRankedByStars = fullRoster.map((member) => {
-        const stat = playerStatsMap[member.tag];
-        return {
-            ...member,
-            totalStars: stat?.starsSum ?? 0,
-            totalDestruction: stat?.destructionSum ?? 0,
-            attacksCount: stat?.attacks ?? 0,
-        };
-    }).sort((a, b) => (b.totalStars - a.totalStars) || (b.totalDestruction - a.totalDestruction));
 
     const topAttackers = [...playerStatsList]
         .filter((p) => p.attacks > 0)
@@ -538,32 +511,22 @@ function ClanWarLeague() {
                     Generar cierre de guerra
                 </button>
 
-                {!isLastRound && (
-                    <button className="war-action-button war-action-button--swap" onClick={openSwapModal}>
-                        Generar cambios de ronda
-                    </button>
-                )}
+                <button className="war-action-button war-action-button--swap" onClick={openSwapModal}>
+                    Generar cambios de ronda
+                </button>
 
                 {isLastRound && (
                     <>
                         <button
                             className="war-action-button war-action-button--top-players"
-                            onClick={() => {
-                                setTopPlayersSelected(rosterRankedByStars.slice(0, 5).map((m) => m.tag));
-                                setTopPlayersModalOpen(true);
-                            }}
+                            onClick={() => { setTopPlayersSelected([]); setTopPlayersModalOpen(true); }}
                         >
                             Mejores jugadores de liga
                         </button>
 
                         <button
                             className="war-action-button war-action-button--bonus"
-                            onClick={() => {
-                                setBonusSelected(
-                                    rosterRankedByStars.filter((m) => m.attacksCount > 0).slice(0, 10).map((m) => m.tag)
-                                );
-                                setBonusModalOpen(true);
-                            }}
+                            onClick={() => { setBonusSelected([]); setBonusModalOpen(true); }}
                         >
                             Bonus de liga
                         </button>
@@ -581,46 +544,61 @@ function ClanWarLeague() {
 
             <div className="details">
 
-                <div className="clan-comparison-container">
+                <div className="war-battle-card">
 
-                    <table className="table-war-comparison">
-                        <thead>
-                            <tr>
-                                <th colSpan="2">
-                                    {war.state === "inWar" ? (
-                                        <p className="end-time-war">{formatTimeRemaining(endTime)}</p>
-                                    ) : war.state === "preparation" ? (
-                                        <p className="start-time-war">La Guerra Comenzará en: {formatTimeRemaining(startTime)}</p>
-                                    ) : (
-                                        <p className="start-time-war">Guerra finalizada</p>
-                                    )}
-                                </th>
-                            </tr>
+                    <div className="war-battle-timer">
+                        {war.state === "inWar" ? (
+                            <>
+                                <span className="war-battle-timer-label">⏱️ Termina en</span>
+                                <span className="war-battle-timer-value">{formatTimeRemaining(endTime)}</span>
+                            </>
+                        ) : war.state === "preparation" ? (
+                            <>
+                                <span className="war-battle-timer-label">⏳ Comienza en</span>
+                                <span className="war-battle-timer-value">{formatTimeRemaining(startTime)}</span>
+                            </>
+                        ) : (
+                            <span className="war-battle-timer-label">Guerra finalizada</span>
+                        )}
+                    </div>
 
-                            <tr>
-                                <th className="clan-name-column-magios">Los Magios</th>
-                                <th className="clan-name-column-oponent">{war.opponent.name}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="clan-img-column-bg"> <img className="clan-img-column" src={war.clan.badgeUrls.medium} alt="clan-img" /></td>
-                                <td className="oponent-img-column-bg"> <img className="oponent-img-column" src={war.opponent.badgeUrls.medium} alt="oponent-img" /></td>
-                            </tr>
-                            <tr>
-                                <td className="clan-attacks-column">Ataques: {war.clan.attacks} de {war.teamSize}</td>
-                                <td className="oponent-attacks-column">Ataques: {war.opponent.attacks} de {war.teamSize}</td>
-                            </tr>
-                            <tr>
-                                <td className="clan-destruction-column">Porcentaje de destrucción: {formatPercentage(war.clan.destructionPercentage)}%</td>
-                                <td className="oponent-destruction-column">Porcentaje de destrucción: {formatPercentage(war.opponent.destructionPercentage)}%</td>
-                            </tr>
-                            <tr>
-                                <td className="clan-stars-column"><img src="https://imgur.com/J82orxp.jpg" alt="Star" className="star-img-table-clan" /><strong>{war.clan.stars}</strong></td>
-                                <td className="clan-oponent-column"><img src="https://imgur.com/J82orxp.jpg" alt="Star" className="star-img-table" /><strong>{war.opponent.stars}</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="war-battle-vs-row">
+
+                        <div className="war-battle-emblem war-battle-emblem--own">
+                            <img src={war.clan.badgeUrls.large} alt="Escudo del clan" className="war-battle-badge war-battle-badge--own" />
+                            <span className="war-battle-clan-name">{war.clan.name}</span>
+                        </div>
+
+                        <span className="war-battle-vs">VS</span>
+
+                        <div className="war-battle-emblem war-battle-emblem--opponent">
+                            <img src={war.opponent.badgeUrls.large} alt="Escudo del oponente" className="war-battle-badge" />
+                            <span className="war-battle-clan-name">{war.opponent.name}</span>
+                        </div>
+
+                    </div>
+
+                    <div className="war-battle-stats-row">
+
+                        <div className="war-side-stats">
+                            <div className="war-side-stars">
+                                <img src="https://imgur.com/J82orxp.jpg" alt="Estrella" className="war-side-star-img" />
+                                <strong>{war.clan.stars}</strong>
+                            </div>
+                            <span className="war-side-stat">Ataques: {war.clan.attacks}/{war.teamSize}</span>
+                            <span className="war-side-stat">Destrucción: {formatPercentage(war.clan.destructionPercentage)}%</span>
+                        </div>
+
+                        <div className="war-side-stats">
+                            <div className="war-side-stars">
+                                <img src="https://imgur.com/J82orxp.jpg" alt="Estrella" className="war-side-star-img" />
+                                <strong>{war.opponent.stars}</strong>
+                            </div>
+                            <span className="war-side-stat">Ataques: {war.opponent.attacks}/{war.teamSize}</span>
+                            <span className="war-side-stat">Destrucción: {formatPercentage(war.opponent.destructionPercentage)}%</span>
+                        </div>
+
+                    </div>
                 </div>
 
                 <h3 className="cwl-section-subtitle">⚔️ Ataques</h3>
@@ -634,7 +612,7 @@ function ClanWarLeague() {
 
                             <div className="participant-card-header">
 
-                                <img src={war.clan.badgeUrls.small} alt="Clan Badge" />
+                                <img src={war.clan.badgeUrls.small} alt="Clan Badge" className="participant-card-badge" />
 
                                 <h4 className="participant-card-name">{member.name}</h4>
 
@@ -658,7 +636,7 @@ function ClanWarLeague() {
                                         </div>
 
                                         <div className="attack-card-child-3">
-                                            <p className="attack-card-child-3-destruccion"><strong>Destrucción:</strong> {formatPercentage(attack.destructionPercentage)}%</p>
+                                            <p className="attack-card-child-3-destruccion"><strong>Destrucción:</strong> %{formatPercentage(attack.destructionPercentage)}</p>
 
                                             {war.opponent.members && war.opponent.members.map((opponentMember, index) => {
                                                if (opponentMember.tag === attack.defenderTag) {
@@ -703,7 +681,7 @@ function ClanWarLeague() {
 
                                 <div className="participant-card-header">
 
-                                    <img src={war.clan.badgeUrls.small} alt="Clan Badge" />
+                                    <img src={war.clan.badgeUrls.small} alt="Clan Badge" className="participant-card-badge" />
 
                                     <h4 className="participant-card-name">{member.name}</h4>
 
@@ -725,7 +703,7 @@ function ClanWarLeague() {
                                             </div>
 
                                             <div className="attack-card-child-3">
-                                                <p className="attack-card-child-3-destruccion"><strong>Destrucción recibida:</strong> {formatPercentage(defense.destructionPercentage)}%</p>
+                                                <p className="attack-card-child-3-destruccion"><strong>Destrucción recibida:</strong> %{formatPercentage(defense.destructionPercentage)}</p>
                                                 <p className="attack-card-child-3-oponent">
                                                     <strong>Atacante:</strong> {attacker ? attacker.name : "Desconocido"}
                                                 </p>
@@ -760,7 +738,7 @@ function ClanWarLeague() {
                             <span className="cwl-stat-label">Estrellas totales</span>
                         </div>
                         <div className="cwl-stat-box">
-                            <span className="cwl-stat-value">{formatPercentage(avgClanDestruction)}%</span>
+                            <span className="cwl-stat-value">%{formatPercentage(avgClanDestruction)}</span>
                             <span className="cwl-stat-label">Destrucción promedio</span>
                         </div>
                     </div>
@@ -779,7 +757,7 @@ function ClanWarLeague() {
                                             style={{ width: `${(player.avgStars / 3) * 100}%` }}
                                         />
                                     </div>
-                                    <span className="cwl-bar-value">{player.avgStars.toFixed(1)}⭐ · {player.avgDestruction.toFixed(1)}%</span>
+                                    <span className="cwl-bar-value">{player.avgStars.toFixed(1)}⭐ · %{player.avgDestruction.toFixed(1)}</span>
                                 </div>
                             ))}
                         </div>
@@ -852,7 +830,7 @@ function ClanWarLeague() {
                                                 <span className="swap-list-item-name">{member.name}</span>
                                                 <span className="swap-list-item-meta">
                                                     {attack
-                                                        ? `${attack.stars}⭐ / ${formatPercentage(attack.destructionPercentage)}%`
+                                                        ? `${attack.stars}⭐ / %${formatPercentage(attack.destructionPercentage)}`
                                                         : "Sin atacar"}
                                                 </span>
                                             </label>
@@ -930,7 +908,7 @@ function ClanWarLeague() {
                         )}
 
                         <div className="swap-list">
-                            {rosterRankedByStars.map((member) => (
+                            {fullRoster.map((member) => (
                                 <label key={member.tag} className="swap-list-item">
                                     <input
                                         type="checkbox"
@@ -939,7 +917,7 @@ function ClanWarLeague() {
                                         onChange={() => toggleOrderedSelection(member.tag, topPlayersSelected, setTopPlayersSelected, 5)}
                                     />
                                     <span className="swap-list-item-name">{member.name}</span>
-                                    <span className="swap-list-item-meta">⭐ {member.totalStars} en la liga</span>
+                                    <span className="swap-list-item-meta">TH{member.townHallLevel}</span>
                                 </label>
                             ))}
                         </div>
@@ -991,7 +969,7 @@ function ClanWarLeague() {
                         )}
 
                         <div className="swap-list">
-                            {rosterRankedByStars.map((member) => (
+                            {fullRoster.map((member) => (
                                 <label key={member.tag} className="swap-list-item">
                                     <input
                                         type="checkbox"
@@ -999,7 +977,7 @@ function ClanWarLeague() {
                                         onChange={() => toggleOrderedSelection(member.tag, bonusSelected, setBonusSelected, null)}
                                     />
                                     <span className="swap-list-item-name">{member.name}</span>
-                                    <span className="swap-list-item-meta">⭐ {member.totalStars} en la liga</span>
+                                    <span className="swap-list-item-meta">TH{member.townHallLevel}</span>
                                 </label>
                             ))}
                         </div>
